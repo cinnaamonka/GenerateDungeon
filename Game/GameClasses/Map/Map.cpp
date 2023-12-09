@@ -60,9 +60,9 @@ void Map::Initialize(HINSTANCE hInstance)
 
 void Map::Start()
 {
-	const int maxFeatures = 20;
-	const int chanceRooms = 75;
-	const int chanceCorridor = 25;
+	const int maxFeatures = 1000;
+	const int chanceRooms = 100;
+	const int chanceCorridor = 0;
 
 	DungeonGenerator generator = DungeonGenerator(m_Size, m_Size, maxFeatures, chanceRooms, chanceCorridor);
 
