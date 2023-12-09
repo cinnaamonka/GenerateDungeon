@@ -7,9 +7,9 @@
 // Include Files
 //-----------------------------------------------------------------
 #include "GameWinMain.h"
-#include "GameEngine.h"
+#include "../GameEngine.h"
 
-#include "Game.h"	
+#include "../Game/Game.h"	
 
 //-----------------------------------------------------------------
 // Defines

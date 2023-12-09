@@ -26,7 +26,7 @@
 #include <Mmsystem.h>					// winmm.lib header, used for playing sound
 #undef MessageBox
 
-#include "AbstractGame.h"				// base for all games
+#include "AbstractGame/AbstractGame.h"				// base for all games
 #include "GameDefines.h"				// common header files and defines / macros
 
 #include <vector>						// using std::vector for tab control logic

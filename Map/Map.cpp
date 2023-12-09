@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------
 #include "Map.h"	
 #include <numeric>
-
+#include "../DungeonGenerator/DungeonGenerator.h"
 
 //-----------------------------------------------------------------
 // X methods																				
@@ -61,74 +61,17 @@ void Map::Initialize(HINSTANCE hInstance)
 
 void Map::Start()
 {
-	MakePath();
+	DungeonGenerator generator = DungeonGenerator(100, 30);
+
+	DungeonMap map = generator.Generate();
 }
 
-char Map::GetRandomDirection(int x, int y, int gridSize) 
+
+void Map::ColorizeMap()
 {
-	double centerX = gridSize / 2.0;
-	double centerY = gridSize / 2.0;
-	double distance = std::sqrt(std::pow(x - centerX, 2) + std::pow(y - centerY, 2));
 
-	double weights[4];
-	double sigma = std::pow(gridSize / 3.0, 2);
-	for (int i = 0; i < 4; ++i) 
-	{
-		weights[i] = std::exp(-std::pow(distance, 2) / (2 * sigma));
-	}
-
-	double totalWeight = std::accumulate(std::begin(weights), std::end(weights), 0.0);
-
-	std::for_each(std::begin(weights), std::end(weights), [totalWeight](double& weight) 
-		{
-		weight /= totalWeight;
-		});
-
-	double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
-
-	double cumulativeWeight = 0.0;
-	for (int i = 0; i < 4; ++i) {
-		cumulativeWeight += weights[i];
-		if (randomValue < cumulativeWeight) 
-		{
-			return "UDLR"[i];
-		}
-	}
-
-	return 'R'; // Fallback, though it should never reach here
 }
 
-void Map::MakePath() 
-{
-	const int gridSize = m_Size;
-
-	int x = std::rand() % gridSize + 1;
-	int y = std::rand() % gridSize + 1;
-
-	const int numSteps = 700;
-
-	std::cout << "Initial position: (" << x << ", " << y << ")\n";
-
-	for (int step = 0; step < numSteps; ++step) 
-	{
-		char direction = GetRandomDirection(x, y, m_Size);
-
-		switch (direction) {
-		case 'U': --y; break;
-		case 'D': ++y; break;
-		case 'L': --x; break;
-		case 'R': ++x; break;
-		}
-
-		x = std::clamp(x, 0, gridSize - 1);
-		y = std::clamp(y, 0, gridSize - 1);
-
-		int currentPos = y * m_Size + x;
-
-		// Assuming m_Cells is a vector of cell objects
-		 m_Cells[currentPos]->SetColor(0x00FFFFFF);
-	}
-}
 void Map::End()
 {
 	// Insert the code that needs to be executed at the closing of the game
@@ -227,7 +170,7 @@ void Map::Paint(RECT rect)
 void Map::Tick()
 {
 
-//	MakePath();
+	//MakePath();
 
 }
 

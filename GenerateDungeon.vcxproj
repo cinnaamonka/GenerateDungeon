@@ -129,22 +129,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AbstractGame.cpp" />
-    <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="AbstractGame\AbstractGame.cpp" />
+    <ClCompile Include="Cell\Cell.cpp" />
+    <ClCompile Include="DungeonGenerator\DungeonGenerator.cpp" />
+    <ClCompile Include="DungeonMap\DungeonMap.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="GameEngine.cpp" />
-    <ClCompile Include="GameWinMain.cpp" />
-    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="GameWinMain\GameWinMain.cpp" />
+    <ClCompile Include="Map\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractGame.h" />
-    <ClInclude Include="Cell.h" />
+    <ClInclude Include="AbstractGame\AbstractGame.h" />
+    <ClInclude Include="Cell\Cell.h" />
+    <ClInclude Include="DungeonGenerator\DungeonGenerator.h" />
+    <ClInclude Include="DungeonMap\DungeonMap.h" />
+    <ClInclude Include="DungeonEnums\enums.hpp" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Game\Game.h" />
     <ClInclude Include="GameDefines.h" />
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameWinMain.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="GameWinMain\GameWinMain.h" />
+    <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

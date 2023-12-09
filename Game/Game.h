@@ -9,11 +9,11 @@
 // Include Files
 //-----------------------------------------------------------------
 
-#include "Resource.h"	
-#include "GameEngine.h"
-#include "AbstractGame.h"
-#include "Map.h"
-#include "Cell.h"
+#include "../Resource.h"	
+#include "../GameEngine.h"
+#include "../AbstractGame/AbstractGame.h"
+#include "../Map/Map.h"
+#include "../Cell/Cell.h"
 
 class Cell;
 class Map;
