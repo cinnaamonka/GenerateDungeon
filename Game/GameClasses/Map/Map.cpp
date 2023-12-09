@@ -8,7 +8,7 @@
 //-----------------------------------------------------------------
 #include "Map.h"	
 #include <numeric>
-#include "../DungeonGenerator/DungeonGenerator.h"
+#include "../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
 
 //-----------------------------------------------------------------
 // X methods																				

@@ -5,7 +5,7 @@
 #include <cassert>
 #include <vector>
 
-#include "../DungeonEnums/enums.hpp"
+#include "../Enums/DungeonEnums.hpp"
 
 #pragma once
 class DungeonMap {

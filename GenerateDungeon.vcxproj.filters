@@ -23,47 +23,47 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Map\Map.cpp">
+    <ClCompile Include="Game\GameClasses\Map\Map.cpp">
       <Filter>Map</Filter>
     </ClCompile>
-    <ClCompile Include="Cell\Cell.cpp">
+    <ClCompile Include="Game\GameClasses\Cell\Cell.cpp">
       <Filter>Cell</Filter>
     </ClCompile>
     <ClCompile Include="Game\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractGame\AbstractGame.cpp">
+    <ClCompile Include="Game\AbstractGame\AbstractGame.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
+    <ClCompile Include="Game\GameEngine\GameEngine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="GameWinMain\GameWinMain.cpp">
+    <ClCompile Include="Game\GameWinMain\GameWinMain.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="DungeonGenerator\DungeonGenerator.cpp" />
-    <ClCompile Include="DungeonMap\DungeonMap.cpp" />
+    <ClCompile Include="lib\DungeonBuilder\DungeonGenerator\DungeonGenerator.cpp" />
+    <ClCompile Include="lib\DungeonBuilder\DungeonMap\DungeonMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AbstractGame\AbstractGame.h">
+    <ClInclude Include="Game\AbstractGame\AbstractGame.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="GameDefines.h">
+    <ClInclude Include="Game\GameEngine\GameDefines.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine.h">
+    <ClInclude Include="Game\GameEngine\GameEngine.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="GameWinMain\GameWinMain.h">
+    <ClInclude Include="Game\GameWinMain\GameWinMain.h">
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Map\Map.h">
+    <ClInclude Include="Game\GameClasses\Map\Map.h">
       <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -72,16 +72,16 @@
     <ClInclude Include="Game\Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Cell\Cell.h">
+    <ClInclude Include="Game\GameClasses\Cell\Cell.h">
       <Filter>Cell</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonGenerator\DungeonGenerator.h">
+    <ClInclude Include="lib\DungeonBuilder\DungeonGenerator\DungeonGenerator.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonMap\DungeonMap.h">
+    <ClInclude Include="lib\DungeonBuilder\DungeonMap\DungeonMap.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="DungeonEnums\enums.hpp">
+    <ClInclude Include="lib\DungeonBuilder\Enums\DungeonEnums.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

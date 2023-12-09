@@ -9,32 +9,30 @@
 // Include Files
 //-----------------------------------------------------------------
 
-#include "../Resource.h"	
-#include "../GameEngine.h"
-#include "../AbstractGame/AbstractGame.h"
-
-#include "../Cell/Cell.h"
+#include "../../Resource.h"	
+#include "../../Game/GameEngine/GameEngine.h"	
+#include "../../Game/AbstractGame/AbstractGame.h"
 
 //-----------------------------------------------------------------
 // X Class																
 //-----------------------------------------------------------------
-class Map : public AbstractGame, public Callable
+class Cell : public AbstractGame, public Callable
 {
 public:				
 	//---------------------------
 	// Constructor(s) and Destructor
 	//---------------------------
-	Map(int size);
+	Cell(POINT pos, COLORREF color, int size);
 
-	virtual ~Map() override;
+	virtual ~Cell() override;
 
 	//---------------------------
 	// Disabling copy/move constructors and assignment operators   
 	//---------------------------
-	Map(const Map& other) = delete;
-	Map(Map&& other) noexcept = delete;
-	Map& operator=(const Map& other) = delete;
-	Map& operator=(Map&& other) noexcept = delete;
+	Cell(const Cell& other) = delete;
+	Cell(Cell&& other) noexcept = delete;
+	Cell& operator=(const Cell& other) = delete;
+	Cell& operator=(Cell&& other) noexcept = delete;
 
 	//---------------------------
 	// General Methods
@@ -42,20 +40,26 @@ public:
 	void Initialize(HINSTANCE hInstance) override;
 	void Start() override;
 	void End() override;
-	void Paint(RECT rect) override;
-	void Tick() override;
 	void MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wParam) override;
 	void MouseWheelAction(int x, int y, int distance, WPARAM wParam) override;
 	void MouseMove(int x, int y, WPARAM wParam) override;
 	void CheckKeyboard() override;
 	void KeyPressed(TCHAR cKey) override;
+	void Paint(RECT rect) override;
+	void Tick() override;
+	
 	void CallAction(Caller* callerPtr) override;
-	void ColorizeMap();
+	void SetColor(COLORREF color)
+	{
+		m_Color = color;
+	}
+
 private:
 	// -------------------------
 	// Datamembers
 	// -------------------------
-
+	
 	int m_Size;
-	std::vector<Cell*> m_Cells;
+	COLORREF m_Color;
+	POINT m_Position;
 };

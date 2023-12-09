@@ -8,12 +8,13 @@
 //-----------------------------------------------------------------
 // Include Files
 //-----------------------------------------------------------------
-
 #include "../Resource.h"	
-#include "../GameEngine.h"
-#include "../AbstractGame/AbstractGame.h"
-#include "../Map/Map.h"
-#include "../Cell/Cell.h"
+
+#include "GameClasses/Map/Map.h"
+#include "GameClasses/Cell/Cell.h"
+#include "../Game/GameEngine/GameEngine.h"	
+#include "../Game/AbstractGame/AbstractGame.h"
+
 
 class Cell;
 class Map;
