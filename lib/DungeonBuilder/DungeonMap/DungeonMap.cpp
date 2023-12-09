@@ -4,14 +4,15 @@ DungeonMap::DungeonMap() : xSize(0), ySize(0), data() {}
 
 DungeonMap::DungeonMap(const int x, const int y, const Tile value) : xSize(x), ySize(y), data(x* y, value) {}
 
-void DungeonMap::SetCell(const int x, const int y, Tile cellType) {
-	assert(IsXInBounds(x) && IsYInBounds(y));
-	data[x + xSize * y] = cellType;
-}
 
 Tile DungeonMap::GetCell(const int x, const int y) const {
 	assert(IsXInBounds(x) && IsYInBounds(y));
 	return data[x + xSize * y];
+}
+
+void DungeonMap::SetCell(const int x, const int y, Tile cellType) {
+	assert(IsXInBounds(x) && IsYInBounds(y));
+	data[x + xSize * y] = cellType;
 }
 
 void DungeonMap::SetCells(const int xStart, const int yStart, const int xEnd, const int yEnd, const Tile cellType) {

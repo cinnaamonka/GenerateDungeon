@@ -3,7 +3,6 @@
 
 #include <random>
 #include <cassert>
-#include <vector>
 
 #include "../Enums/DungeonEnums.hpp"
 
@@ -13,9 +12,10 @@ public:
     DungeonMap();
     DungeonMap(const int x, const int y, Tile value = Tile::Unused);
 
+    std::vector<Tile> GetCells() const { return data; };
     Tile GetCell(const int x, const int y) const;
+   
     void SetCell(const int x, const int y, Tile cellType);
-
     void SetCells(const int xStart, const int yStart, const int xEnd, const int yEnd, const Tile cellType);
 
     bool IsAdjacent(const int x, const int y, const Tile tile) const;

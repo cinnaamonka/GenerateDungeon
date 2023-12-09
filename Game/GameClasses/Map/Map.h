@@ -12,7 +12,7 @@
 #include "../../Resource.h"	
 #include "../../Game/GameEngine/GameEngine.h"	
 #include "../../Game/AbstractGame/AbstractGame.h"
-
+#include "../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
 #include "../Cell/Cell.h"
 
 //-----------------------------------------------------------------
@@ -57,5 +57,6 @@ private:
 	// -------------------------
 
 	int m_Size;
+	DungeonMap m_DungeonMap;
 	std::vector<Cell*> m_Cells;
 };
