@@ -38,29 +38,20 @@ Map::~Map()
 
 void Map::Initialize(HINSTANCE hInstance)
 {
-	// Set the required values
 	AbstractGame::Initialize(hInstance);
+
 	GAME_ENGINE->SetTitle(_T("Game Engine version 7_02"));
+
 	GAME_ENGINE->RunGameLoop(true);
 
-	// Set the optional values
 	GAME_ENGINE->SetWidth(1024);
 	GAME_ENGINE->SetHeight(768);
 	GAME_ENGINE->SetFrameRate(50);
-
-	// Set the keys that the game needs to listen to
-	//tstringstream buffer;
-	//buffer << _T("KLMO");
-	//buffer << (TCHAR) VK_LEFT;
-	//buffer << (TCHAR) VK_RIGHT;
-	//GAME_ENGINE->SetKeyList(buffer.str());
-
-
 }
 
 void Map::Start()
 {
-	const int maxFeatures = 1000;
+	const int maxFeatures = 50;
 	const int chanceRooms = 100;
 	const int chanceCorridor = 0;
 
@@ -71,49 +62,19 @@ void Map::Start()
 	ColorizeMap();
 }
 
+void Map::ColorizeCell(Cell* cell, Tile tile) const
+{
+	std::string colorName = TileMapper::getColorName(tile);
+
+	cell->SetColor(colorName);
+}
+
 
 void Map::ColorizeMap()
 {
 	std::vector<Tile> tiles = m_DungeonMap.GetCells();
 
-	for (int i = 0; i < m_Cells.size(); i++)
-	{
-		Tile tile = tiles[i];
-
-		COLORREF lightGray = RGB(211, 211, 211);
-		COLORREF gray = RGB(128, 128, 128);
-		COLORREF darkGray = RGB(85, 85, 85);
-		COLORREF darkerGray = RGB(40, 40, 40);
-
-		COLORREF brown = RGB(139, 69, 19);
-		COLORREF mediumAquamarine = RGB(102, 205, 170);
-		COLORREF mediumSlateBlue = RGB(123, 104, 238);
-		COLORREF mediumSpringGreen = RGB(112, 219, 147);
-		COLORREF blueViolet = RGB(138, 43, 226);
-
-		switch (tile) {
-		case Tile::Unused:
-			m_Cells[i]->SetColor(lightGray);
-			break;
-		case Tile::DirtWall:
-			m_Cells[i]->SetColor(darkerGray);
-			break;
-		case Tile::DirtFloor:
-			m_Cells[i]->SetColor(gray);
-			break;
-		case Tile::Corridor:
-			m_Cells[i]->SetColor(darkGray);
-			break;
-		case Tile::Door:
-			m_Cells[i]->SetColor(brown);
-			break;
-			m_Cells[i]->SetColor(mediumSpringGreen);
-			break;
-		case Tile::DownStairs:
-			m_Cells[i]->SetColor(blueViolet);
-			break;
-		};
-	}
+	for (int i = 0; i < m_Cells.size(); i++) { ColorizeCell(m_Cells[i], tiles[i]); }
 }
 
 void Map::End()

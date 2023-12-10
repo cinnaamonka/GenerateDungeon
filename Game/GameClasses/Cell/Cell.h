@@ -10,6 +10,8 @@
 //-----------------------------------------------------------------
 
 #include "../../Resource.h"	
+
+#include "../ColorMapper/ColorMapper.h"
 #include "../../Game/GameEngine/GameEngine.h"	
 #include "../../Game/AbstractGame/AbstractGame.h"
 
@@ -18,7 +20,7 @@
 //-----------------------------------------------------------------
 class Cell : public AbstractGame, public Callable
 {
-public:				
+public:
 	//---------------------------
 	// Constructor(s) and Destructor
 	//---------------------------
@@ -47,19 +49,17 @@ public:
 	void KeyPressed(TCHAR cKey) override;
 	void Paint(RECT rect) override;
 	void Tick() override;
-	
+
 	void CallAction(Caller* callerPtr) override;
-	void SetColor(COLORREF color)
-	{
-		m_Color = color;
-	}
+	void SetColor(const std::string& colorName) { m_Color = ColorMapper::getColor(colorName); }
 
 private:
 	// -------------------------
 	// Datamembers
 	// -------------------------
-	
+
 	int m_Size;
+
 	COLORREF m_Color;
 	POINT m_Position;
 };

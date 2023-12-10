@@ -10,6 +10,7 @@
 //-----------------------------------------------------------------
 
 #include "../../Resource.h"	
+#include "../TileMapper/TileMapper.h"
 #include "../../Game/GameEngine/GameEngine.h"	
 #include "../../Game/AbstractGame/AbstractGame.h"
 #include "../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
@@ -20,7 +21,7 @@
 //-----------------------------------------------------------------
 class Map : public AbstractGame, public Callable
 {
-public:				
+public:
 	//---------------------------
 	// Constructor(s) and Destructor
 	//---------------------------
@@ -51,6 +52,8 @@ public:
 	void KeyPressed(TCHAR cKey) override;
 	void CallAction(Caller* callerPtr) override;
 	void ColorizeMap();
+
+	void ColorizeCell(Cell* cell, Tile tile) const;
 private:
 	// -------------------------
 	// Datamembers

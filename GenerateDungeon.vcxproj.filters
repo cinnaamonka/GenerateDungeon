@@ -43,6 +43,8 @@
     </ClCompile>
     <ClCompile Include="lib\DungeonBuilder\DungeonGenerator\DungeonGenerator.cpp" />
     <ClCompile Include="lib\DungeonBuilder\DungeonMap\DungeonMap.cpp" />
+    <ClCompile Include="Game\GameClasses\ColorMapper\ColorMapper.cpp" />
+    <ClCompile Include="Game\GameClasses\TileMapper\TileMapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\AbstractGame\AbstractGame.h">
@@ -82,6 +84,12 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="lib\DungeonBuilder\Enums\DungeonEnums.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameClasses\ColorMapper\ColorMapper.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameClasses\TileMapper\TileMapper.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
