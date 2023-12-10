@@ -15,8 +15,9 @@
 // X methods																				
 //-----------------------------------------------------------------
 
-Map::Map(int size) :
-	m_Size(size) {}
+Map::Map(int size, int maxFeatures /* = 100 */, int chanceRooms /* = 100 */, int chanceCorridor /* = 0 */) :
+	m_Size(size), m_DungeonGenerator{ m_Size, m_Size, maxFeatures, chanceRooms, chanceCorridor }
+{}
 
 Map::~Map()
 {
@@ -54,13 +55,7 @@ void Map::Initialize(HINSTANCE hInstance)
 
 void Map::Start()
 {
-	const int maxFeatures = 150;
-	const int chanceRooms = 100;
-	const int chanceCorridor = 0;
-
-	DungeonGenerator generator = DungeonGenerator(m_Size, m_Size, maxFeatures, chanceRooms, chanceCorridor);
-
-	m_DungeonMap = generator.Generate();
+	m_DungeonMap = m_DungeonGenerator.Generate();
 
 	ColorizeMap();
 }
@@ -87,20 +82,11 @@ void Map::End()
 
 void Map::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wParam)
 {
-	// Insert the code that needs to be executed when the game registers a mouse button action
 
-	/* Example:
-	if (isLeft == true && isDown == true) // is it a left mouse click?
+	if (isLeft && isDown) 
 	{
-		if ( x > 261 && x < 261 + 117 ) // check if click lies within x coordinates of choice
-		{
-			if ( y > 182 && y < 182 + 33 ) // check if click also lies within y coordinates of choice
-			{
-				GAME_ENGINE->MessageBox(_T("Clicked."));
-			}
-		}
+		//refresh dungeon here
 	}
-	*/
 }
 
 

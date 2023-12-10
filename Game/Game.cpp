@@ -62,20 +62,7 @@ void Game::End()
 
 void Game::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wParam)
 {
-	// Insert the code that needs to be executed when the game registers a mouse button action
-
-	/* Example:
-	if (isLeft == true && isDown == true) // is it a left mouse click?
-	{
-		if ( x > 261 && x < 261 + 117 ) // check if click lies within x coordinates of choice
-		{
-			if ( y > 182 && y < 182 + 33 ) // check if click also lies within y coordinates of choice
-			{
-				GAME_ENGINE->MessageBox(_T("Clicked."));
-			}
-		}
-	}
-	*/
+	m_pMap->MouseButtonAction(isLeft, isDown, x, y, wParam);
 }
 
 

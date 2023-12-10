@@ -25,7 +25,7 @@ public:
 	//---------------------------
 	// Constructor(s) and Destructor
 	//---------------------------
-	Map(int size);
+	Map(int size, int maxFeatures = 100, int chanceRooms = 100, int chanceCorridor = 0);
 
 	virtual ~Map() override;
 
@@ -60,6 +60,8 @@ private:
 	// -------------------------
 
 	int m_Size;
+
+	DungeonGenerator m_DungeonGenerator;
 	DungeonMap m_DungeonMap;
 	std::vector<Cell*> m_Cells;
 };
