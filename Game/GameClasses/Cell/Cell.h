@@ -11,7 +11,7 @@
 
 #include "../../Resource.h"	
 
-#include "../ColorMapper/ColorMapper.h"
+#include "../../Mappings/ColorMapper/ColorMapper.h"
 #include "../../Game/GameEngine/GameEngine.h"	
 #include "../../Game/AbstractGame/AbstractGame.h"
 

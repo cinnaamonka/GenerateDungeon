@@ -129,7 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game\GameClasses\ColorMapper\ColorMapper.cpp" />
+    <ClCompile Include="Game\Mappings\ColorMapper\ColorMapper.cpp" />
     <ClCompile Include="Game\AbstractGame\AbstractGame.cpp" />
     <ClCompile Include="Game\GameClasses\Cell\Cell.cpp" />
     <ClCompile Include="lib\DungeonBuilder\DungeonGenerator\DungeonGenerator.cpp" />
@@ -138,10 +138,10 @@
     <ClCompile Include="Game\GameEngine\GameEngine.cpp" />
     <ClCompile Include="Game\GameWinMain\GameWinMain.cpp" />
     <ClCompile Include="Game\GameClasses\Map\Map.cpp" />
-    <ClCompile Include="Game\GameClasses\TileMapper\TileMapper.cpp" />
+    <ClCompile Include="Game\Mappings\TileMapper\TileMapper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game\GameClasses\ColorMapper\ColorMapper.h" />
+    <ClInclude Include="Game\Mappings\ColorMapper\ColorMapper.h" />
     <ClInclude Include="Game\AbstractGame\AbstractGame.h" />
     <ClInclude Include="Game\GameClasses\Cell\Cell.h" />
     <ClInclude Include="lib\DungeonBuilder\DungeonGenerator\DungeonGenerator.h" />
@@ -155,7 +155,7 @@
     <ClInclude Include="Game\GameClasses\Map\Map.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Game\GameClasses\TileMapper\TileMapper.h" />
+    <ClInclude Include="Game\Mappings\TileMapper\TileMapper.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="big.ico" />

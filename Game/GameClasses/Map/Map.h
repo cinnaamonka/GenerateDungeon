@@ -10,7 +10,7 @@
 //-----------------------------------------------------------------
 
 #include "../../Resource.h"	
-#include "../TileMapper/TileMapper.h"
+#include "../../Mappings/TileMapper/TileMapper.h"
 #include "../../Game/GameEngine/GameEngine.h"	
 #include "../../Game/AbstractGame/AbstractGame.h"
 #include "../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
