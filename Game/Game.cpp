@@ -15,7 +15,8 @@
 // X methods																				
 //-----------------------------------------------------------------
 #include "Game.h"
-Game::Game()
+
+Game::Game() :m_ScreenSize{ 900 }
 {
 	m_pMap = new Map(50);
 }
@@ -33,10 +34,13 @@ void Game::Initialize(HINSTANCE hInstance)
 	GAME_ENGINE->SetTitle(_T("Game Engine version 7_02"));
 	GAME_ENGINE->RunGameLoop(true);
 
+
 	// Set the optional values
-	GAME_ENGINE->SetWidth(1024);
-	GAME_ENGINE->SetHeight(768);
+	GAME_ENGINE->SetWidth(m_ScreenSize);
+	GAME_ENGINE->SetHeight(m_ScreenSize);
 	GAME_ENGINE->SetFrameRate(50);
+
+	m_pMap->Initialize(hInstance);
 
 	// Set the keys that the game needs to listen to
 	//tstringstream buffer;

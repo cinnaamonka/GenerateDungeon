@@ -66,6 +66,8 @@ private:
 	POINT m_Position;
 	int m_MaxTunnels;
 	int m_MaxLength;
+
+	int m_ScreenSize;
 	
 
 	Map* m_pMap;

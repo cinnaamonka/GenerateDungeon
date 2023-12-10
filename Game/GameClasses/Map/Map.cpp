@@ -14,18 +14,7 @@
 //-----------------------------------------------------------------
 
 Map::Map(int size) :
-	m_Size(size)
-{
-	POINT pos = { 200,100 };
-	for (int row = 0; row < size; row++)
-	{
-		for (int coll = 0; coll < size; coll++)
-		{
-			Cell* cell = new Cell({ pos.x + coll * m_Size / 5 , pos.y + row * m_Size / 5 }, COLORREF(0x0000FF00), m_Size / 5);
-			m_Cells.push_back(cell);
-		}
-	}
-}
+	m_Size(size) {}
 
 Map::~Map()
 {
@@ -38,15 +27,16 @@ Map::~Map()
 
 void Map::Initialize(HINSTANCE hInstance)
 {
-	AbstractGame::Initialize(hInstance);
+	const int width = GAME_ENGINE->GetWidth() / m_Size;
 
-	GAME_ENGINE->SetTitle(_T("Game Engine version 7_02"));
-
-	GAME_ENGINE->RunGameLoop(true);
-
-	GAME_ENGINE->SetWidth(1024);
-	GAME_ENGINE->SetHeight(768);
-	GAME_ENGINE->SetFrameRate(50);
+	for (int row = 0; row < m_Size; row++)
+	{
+		for (int coll = 0; coll < m_Size; coll++)
+		{
+			Cell* cell = new Cell({ coll * width, row * width }, COLORREF(0x0000FF00), width);
+			m_Cells.push_back(cell);
+		}
+	}
 }
 
 void Map::Start()
