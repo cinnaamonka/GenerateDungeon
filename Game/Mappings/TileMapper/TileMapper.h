@@ -3,7 +3,7 @@
 #include <string>
 #include <windows.h>
 
-#include "../../lib/DungeonBuilder/Enums/DungeonEnums.hpp"
+#include "../../../lib/DungeonBuilder/Enums/DungeonEnums.hpp"
 
 #pragma once
 class TileMapper {

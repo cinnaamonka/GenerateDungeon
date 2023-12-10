@@ -9,11 +9,11 @@
 // Include Files
 //-----------------------------------------------------------------
 
-#include "../../Resource.h"	
+#include "../../../Resource.h"	
 #include "../../Mappings/TileMapper/TileMapper.h"
-#include "../../Game/GameEngine/GameEngine.h"	
-#include "../../Game/AbstractGame/AbstractGame.h"
-#include "../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
+#include "../../GameEngine/GameEngine.h"	
+#include "../../AbstractGame/AbstractGame.h"
+#include "../../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
 #include "../Cell/Cell.h"
 
 //-----------------------------------------------------------------

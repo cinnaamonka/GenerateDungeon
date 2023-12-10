@@ -9,11 +9,11 @@
 // Include Files
 //-----------------------------------------------------------------
 
-#include "../../Resource.h"	
+#include "../../../Resource.h"	
 
 #include "../../Mappings/ColorMapper/ColorMapper.h"
-#include "../../Game/GameEngine/GameEngine.h"	
-#include "../../Game/AbstractGame/AbstractGame.h"
+#include "../../GameEngine/GameEngine.h"
+#include "../../AbstractGame/AbstractGame.h"
 
 //-----------------------------------------------------------------
 // X Class																
