@@ -9,6 +9,8 @@
 #include "Map.h"	
 #include <numeric>
 
+#include "../../Mappings/ColorMapper/ColorMapper.h"
+
 //-----------------------------------------------------------------
 // X methods																				
 //-----------------------------------------------------------------
@@ -27,13 +29,24 @@ Map::~Map()
 
 void Map::Initialize(HINSTANCE hInstance)
 {
-	const int width = GAME_ENGINE->GetWidth() / m_Size;
+	const int width = GAME_ENGINE->GetWidth();
+	const int roundedWidth = static_cast<int>(std::floor(static_cast<float>(width) / m_Size));
+
+	POINT startPoint =
+	{
+		(m_Size * roundedWidth - m_Size * (roundedWidth - 1)) / 2,
+		(m_Size * roundedWidth - m_Size * (roundedWidth - 1)) / 2
+	};
+
 
 	for (int row = 0; row < m_Size; row++)
 	{
 		for (int coll = 0; coll < m_Size; coll++)
 		{
-			Cell* cell = new Cell({ coll * width, row * width }, COLORREF(0x0000FF00), width);
+			POINT position = { startPoint.x + coll * (roundedWidth - 1), startPoint.y + row * (roundedWidth - 1) };
+
+			Cell* cell = new Cell(position, ColorMapper::GetColor("lightGray"), roundedWidth);
+
 			m_Cells.push_back(cell);
 		}
 	}
@@ -41,7 +54,7 @@ void Map::Initialize(HINSTANCE hInstance)
 
 void Map::Start()
 {
-	const int maxFeatures = 50;
+	const int maxFeatures = 150;
 	const int chanceRooms = 100;
 	const int chanceCorridor = 0;
 
@@ -54,7 +67,7 @@ void Map::Start()
 
 void Map::ColorizeCell(Cell* cell, Tile tile) const
 {
-	std::string colorName = TileMapper::getColorName(tile);
+	std::string colorName = TileMapper::GetColorName(tile);
 
 	cell->SetColor(colorName);
 }
@@ -155,6 +168,9 @@ void Map::KeyPressed(TCHAR cKey)
 
 void Map::Paint(RECT rect)
 {
+	GAME_ENGINE->SetColor(ColorMapper::GetColor("lightGray"));
+	GAME_ENGINE->FillRect(0, 0, GAME_ENGINE->GetWidth(), GAME_ENGINE->GetHeight());
+
 	for (const auto& cell : m_Cells)
 	{
 		cell->Paint(rect);
@@ -162,7 +178,8 @@ void Map::Paint(RECT rect)
 
 }
 
-void Map::Tick() {}
+void Map::Tick() {
+}
 
 
 void Map::CallAction(Caller* callerPtr) {}

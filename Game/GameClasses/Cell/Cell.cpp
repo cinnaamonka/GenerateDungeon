@@ -26,22 +26,7 @@ Cell::~Cell()
 
 void Cell::Initialize(HINSTANCE hInstance)
 {
-	// Set the required values
-	AbstractGame::Initialize(hInstance);
-	GAME_ENGINE->SetTitle(_T("Game Engine version 7_02"));
-	GAME_ENGINE->RunGameLoop(true);
 
-	// Set the optional values
-	GAME_ENGINE->SetWidth(1024);
-	GAME_ENGINE->SetHeight(768);
-	GAME_ENGINE->SetFrameRate(50);
-
-	// Set the keys that the game needs to listen to
-	//tstringstream buffer;
-	//buffer << _T("KLMO");
-	//buffer << (TCHAR) VK_LEFT;
-	//buffer << (TCHAR) VK_RIGHT;
-	//GAME_ENGINE->SetKeyList(buffer.str());
 }
 
 void Cell::Start()

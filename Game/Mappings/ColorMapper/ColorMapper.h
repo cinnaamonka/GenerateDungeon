@@ -8,7 +8,7 @@ class ColorMapper {
 public:
 	ColorMapper();
 
-	static COLORREF getColor(const std::string& colorName) { return colorMap[colorName]; }
+	static COLORREF GetColor(const std::string& colorName) { return colorMap[colorName]; }
 
 private:
 	static std::map<std::string, COLORREF> colorMap;

@@ -51,7 +51,7 @@ public:
 	void Tick() override;
 
 	void CallAction(Caller* callerPtr) override;
-	void SetColor(const std::string& colorName) { m_Color = ColorMapper::getColor(colorName); }
+	void SetColor(const std::string& colorName) { m_Color = ColorMapper::GetColor(colorName); }
 
 private:
 	// -------------------------

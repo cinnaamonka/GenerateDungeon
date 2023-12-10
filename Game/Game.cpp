@@ -18,7 +18,7 @@
 
 Game::Game() :m_ScreenSize{ 900 }
 {
-	m_pMap = new Map(50);
+	m_pMap = new Map(100);
 }
 
 Game::~Game()

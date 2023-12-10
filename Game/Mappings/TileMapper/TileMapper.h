@@ -10,7 +10,7 @@ class TileMapper {
 public:
 	TileMapper();
 
-	static std::string getColorName(const Tile& colorName) { return tileMap[colorName]; }
+	static std::string GetColorName(const Tile& colorName) { return tileMap[colorName]; }
 
 private:	
 	static std::map<Tile, std::string> tileMap;
