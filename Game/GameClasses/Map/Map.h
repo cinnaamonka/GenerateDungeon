@@ -60,8 +60,12 @@ private:
 	// -------------------------
 
 	int m_Size;
+	int m_MaxFeatures;
+	int m_ChanceRoom;
+	int m_ChanceCorridor;
 
 	DungeonGenerator m_DungeonGenerator;
 	DungeonMap m_DungeonMap;
+
 	std::vector<Cell*> m_Cells;
 };

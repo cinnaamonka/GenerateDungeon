@@ -15,8 +15,12 @@
 // X methods																				
 //-----------------------------------------------------------------
 
-Map::Map(int size, int maxFeatures /* = 100 */, int chanceRooms /* = 100 */, int chanceCorridor /* = 0 */) :
-	m_Size(size), m_DungeonGenerator{ m_Size, m_Size, maxFeatures, chanceRooms, chanceCorridor }
+Map::Map(int size, int maxFeatures /* = 100 */, int chanceRoom /* = 100 */, int chanceCorridor /* = 0 */) :
+	m_Size(size),
+	m_MaxFeatures(maxFeatures),
+	m_ChanceRoom(chanceRoom),
+	m_ChanceCorridor(chanceCorridor),
+	m_DungeonGenerator{ m_Size, m_Size, m_MaxFeatures, m_ChanceRoom, m_ChanceCorridor }
 {}
 
 Map::~Map()
@@ -83,9 +87,12 @@ void Map::End()
 void Map::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wParam)
 {
 
-	if (isLeft && isDown) 
+	if (isLeft && isDown)
 	{
-		//refresh dungeon here
+		m_DungeonGenerator = DungeonGenerator(m_Size, m_Size, m_MaxFeatures, m_ChanceRoom, m_ChanceCorridor);
+		m_DungeonMap = m_DungeonGenerator.Generate();
+
+		ColorizeMap();
 	}
 }
 
