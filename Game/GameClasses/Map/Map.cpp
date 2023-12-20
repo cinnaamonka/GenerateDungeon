@@ -68,7 +68,7 @@ void Map::ColorizeCell(Cell* cell, Tile tile) const
 }
 
 
-void Map::ColorizeMap() const 
+void Map::ColorizeMap() const
 {
 	std::vector<DungeonCell> tiles = m_DungeonMap.GetCells();
 

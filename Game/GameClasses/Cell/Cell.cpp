@@ -1,7 +1,7 @@
 #include "Cell.h"			
 
-Cell::Cell(POINT pos, COLORREF color,int size) :m_Size(size), m_Color(color), m_Position(pos) {}
-	
+Cell::Cell(POINT pos, COLORREF color, int size) :m_Size(size), m_Color(color), m_Position(pos) {}
+
 Cell::~Cell() {}
 
 void Cell::Initialize(HINSTANCE hInstance) {}
@@ -29,11 +29,3 @@ void Cell::Paint(RECT rect)
 void Cell::Tick() {}
 
 void Cell::CallAction(Caller* callerPtr) {}
-
-
-
-
-
-
-
-

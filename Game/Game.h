@@ -39,13 +39,14 @@ public:
 private:
 
 	int m_Size;
-	COLORREF m_Color;
-	POINT m_Position;
-	int m_MaxTunnels;
-	int m_MaxLength;
 
 	int m_ScreenSize;
 
+	int m_MaxTunnels;
+	int m_MaxLength;
 
 	Map* m_pMap;
+
+	COLORREF m_Color;
+	POINT m_Position;
 };

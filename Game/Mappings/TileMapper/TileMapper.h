@@ -12,6 +12,6 @@ public:
 
 	static std::string GetColorName(const Tile& colorName) { return tileMap[colorName]; }
 
-private:	
+private:
 	static std::map<Tile, std::string> tileMap;
 };
