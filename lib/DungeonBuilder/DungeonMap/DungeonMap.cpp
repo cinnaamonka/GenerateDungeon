@@ -9,7 +9,7 @@ DungeonMap::DungeonMap(const int x, const int y, const Tile value) :
 {
 	data.reserve(x * y);
 
-	for (int mapIndex = 0; mapIndex < x * y; ++mapIndex) 
+	for (int mapIndex = 0; mapIndex < x * y; ++mapIndex)
 	{
 		data.push_back({ {mapIndex, value}, -1 });
 	}

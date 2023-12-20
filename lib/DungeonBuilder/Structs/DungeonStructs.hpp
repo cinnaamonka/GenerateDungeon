@@ -12,4 +12,4 @@ struct DungeonCell
 	int orderIndex;
 };
 
-#endif 
+#endif
