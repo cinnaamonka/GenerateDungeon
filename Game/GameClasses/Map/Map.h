@@ -1,46 +1,27 @@
-//-----------------------------------------------------------------
-// Main Game  File
-// C++ Header - X.h - version v7_02			
-//-----------------------------------------------------------------
-
 #pragma once
 
-//-----------------------------------------------------------------
-// Include Files
-//-----------------------------------------------------------------
+#include "../Cell/Cell.h"
 
-#include "../../../Resource.h"	
 #include "../../Mappings/TileMapper/TileMapper.h"
 #include "../../GameEngine/GameEngine.h"	
 #include "../../AbstractGame/AbstractGame.h"
-#include "../../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
-#include "../Cell/Cell.h"
 
-//-----------------------------------------------------------------
-// X Class																
-//-----------------------------------------------------------------
+#include "../../../Resource.h"	
+#include "../../../lib/DungeonBuilder/DungeonGenerator/DungeonGenerator.h"
+
+
 class Map : public AbstractGame, public Callable
 {
 public:
-	//---------------------------
-	// Constructor(s) and Destructor
-	//---------------------------
 	Map(int size, int maxFeatures = 100, int chanceRooms = 100, int chanceCorridor = 0);
 
 	virtual ~Map() override;
 
-
-	//---------------------------
-	// Disabling copy/move constructors and assignment operators   
-	//---------------------------
 	Map(const Map& other) = delete;
 	Map(Map&& other) noexcept = delete;
 	Map& operator=(const Map& other) = delete;
 	Map& operator=(Map&& other) noexcept = delete;
 
-	//---------------------------
-	// General Methods
-	//---------------------------
 	void Initialize(HINSTANCE hInstance) override;
 	void Start() override;
 	void End() override;
@@ -53,19 +34,20 @@ public:
 	void CheckKeyboard() override;
 	void KeyPressed(TCHAR cKey) override;
 	void CallAction(Caller* callerPtr) override;
-	void ColorizeMap();
-	void ClearMap();
 
+	void ColorizeMap() const;
 	void ColorizeCell(Cell* cell, Tile tile) const;
+
+	void ClearMap();
 private:
-	// -------------------------
-	// Datamembers
-	// -------------------------
 
 	int m_Size;
-	int m_IsGamePaused;
+
 	int m_NumberOfDisplayedCells;
-	int cellsPerTick;
+	int m_CellsPerTick;
+
+	int m_IsPaintingPaused;
+
 	int m_MaxFeatures;
 	int m_ChanceRoom;
 	int m_ChanceCorridor;
