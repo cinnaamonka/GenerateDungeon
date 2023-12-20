@@ -45,6 +45,7 @@
     <ClCompile Include="lib\DungeonBuilder\DungeonMap\DungeonMap.cpp" />
     <ClCompile Include="Game\Mappings\ColorMapper\ColorMapper.cpp" />
     <ClCompile Include="Game\Mappings\TileMapper\TileMapper.cpp" />
+    <ClCompile Include="lib\DungeonBuilder\Structs\DungeonStructs.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\AbstractGame\AbstractGame.h">

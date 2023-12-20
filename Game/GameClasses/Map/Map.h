@@ -29,6 +29,7 @@ public:
 
 	virtual ~Map() override;
 
+
 	//---------------------------
 	// Disabling copy/move constructors and assignment operators   
 	//---------------------------
@@ -52,6 +53,7 @@ public:
 	void KeyPressed(TCHAR cKey) override;
 	void CallAction(Caller* callerPtr) override;
 	void ColorizeMap();
+	void ClearMap();
 
 	void ColorizeCell(Cell* cell, Tile tile) const;
 private:

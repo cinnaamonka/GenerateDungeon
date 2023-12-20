@@ -136,20 +136,20 @@ bool DungeonGenerator::MakeFeature(DungeonMap& map, RngT& rng) const {
 		int x = GetRandomInt(rng, 1, XSize - 2);
 		int y = GetRandomInt(rng, 1, YSize - 2);
 
-		if (map.GetCell(x, y) != Tile::DirtWall && map.GetCell(x, y) != Tile::Corridor) { continue; }
+		if (map.GetCell(x, y).data.second != Tile::DirtWall && map.GetCell(x, y).data.second != Tile::Corridor) { continue; }
 
 		if (map.IsAdjacent(x, y, Tile::Door)) { continue; }
 
-		if (map.GetCell(x, y + 1) == Tile::DirtFloor || map.GetCell(x, y + 1) == Tile::Corridor) {
+		if (map.GetCell(x, y + 1).data.second == Tile::DirtFloor || map.GetCell(x, y + 1).data.second == Tile::Corridor) {
 			if (MakeFeature(map, rng, x, y, 0, -1, Direction::North)) { return true; }
 		}
-		else if (map.GetCell(x - 1, y) == Tile::DirtFloor || map.GetCell(x - 1, y) == Tile::Corridor) {
+		else if (map.GetCell(x - 1, y).data.second == Tile::DirtFloor || map.GetCell(x - 1, y).data.second == Tile::Corridor) {
 			if (MakeFeature(map, rng, x, y, 1, 0, Direction::East)) { return true; }
 		}
-		else if (map.GetCell(x, y - 1) == Tile::DirtFloor || map.GetCell(x, y - 1) == Tile::Corridor) {
+		else if (map.GetCell(x, y - 1).data.second == Tile::DirtFloor || map.GetCell(x, y - 1).data.second == Tile::Corridor) {
 			if (MakeFeature(map, rng, x, y, 0, 1, Direction::South)) { return true; }
 		}
-		else if (map.GetCell(x + 1, y) == Tile::DirtFloor || map.GetCell(x + 1, y) == Tile::Corridor) {
+		else if (map.GetCell(x + 1, y).data.second == Tile::DirtFloor || map.GetCell(x + 1, y).data.second == Tile::Corridor) {
 			if (MakeFeature(map, rng, x, y, -1, 0, Direction::West)) { return true; }
 		}
 	}

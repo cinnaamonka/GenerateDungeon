@@ -139,6 +139,7 @@
     <ClCompile Include="Game\GameWinMain\GameWinMain.cpp" />
     <ClCompile Include="Game\GameClasses\Map\Map.cpp" />
     <ClCompile Include="Game\Mappings\TileMapper\TileMapper.cpp" />
+    <ClCompile Include="lib\DungeonBuilder\Structs\DungeonStructs.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Mappings\ColorMapper\ColorMapper.h" />

@@ -5,6 +5,7 @@
 #include <cassert>
 
 #include "../Enums/DungeonEnums.hpp"
+#include "../Structs/DungeonStructs.hpp"
 
 #pragma once
 class DungeonMap {
@@ -12,8 +13,8 @@ public:
     DungeonMap();
     DungeonMap(const int x, const int y, Tile value = Tile::Unused);
 
-    std::vector<Tile> GetCells() const { return data; };
-    Tile GetCell(const int x, const int y) const;
+    std::vector<DungeonCell> GetCells() const { return data; };
+    DungeonCell GetCell(const int x, const int y) const;
    
     void SetCell(const int x, const int y, Tile cellType);
     void SetCells(const int xStart, const int yStart, const int xEnd, const int yEnd, const Tile cellType);
@@ -25,7 +26,9 @@ public:
 
 private:
     int xSize, ySize;
-    std::vector<Tile> data;
+    std::vector<DungeonCell> data;
+
+    int orderIndex;
 };
 
 #endif

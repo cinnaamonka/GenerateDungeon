@@ -31,9 +31,10 @@ Map::~Map()
 	}
 }
 
-
-void Map::Initialize(HINSTANCE hInstance)
+void Map::ClearMap()
 {
+	m_Cells.clear();
+
 	const int width = GAME_ENGINE->GetWidth();
 	const int roundedWidth = static_cast<int>(std::floor(static_cast<float>(width) / m_Size));
 
@@ -57,6 +58,11 @@ void Map::Initialize(HINSTANCE hInstance)
 	}
 }
 
+void Map::Initialize(HINSTANCE hInstance)
+{
+	ClearMap();
+}
+
 void Map::Start()
 {
 	m_DungeonMap = m_DungeonGenerator.Generate();
@@ -74,9 +80,21 @@ void Map::ColorizeCell(Cell* cell, Tile tile) const
 
 void Map::ColorizeMap()
 {
-	std::vector<Tile> tiles = m_DungeonMap.GetCells();
+	std::vector<DungeonCell> tiles = m_DungeonMap.GetCells();
 
-	for (int i = 0; i < m_Cells.size(); i++) { ColorizeCell(m_Cells[i], tiles[i]); }
+	auto compareFunction = [](const DungeonCell& a, const DungeonCell& b) {
+		return (a.orderIndex == -1) ? false : ((b.orderIndex == -1) ? true : (a.orderIndex < b.orderIndex));
+	};
+
+	std::sort(tiles.begin(), tiles.end(), compareFunction);
+
+	for (int i = 0; i < 1; i++)
+	{
+		const auto& tile = tiles[i].data.second;
+		const auto& mapIndex = tiles[i].data.first;
+
+		ColorizeCell(m_Cells[mapIndex], tile);
+	}
 }
 
 void Map::End()
@@ -91,6 +109,7 @@ void Map::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wPara
 	{
 		m_DungeonGenerator = DungeonGenerator(m_Size, m_Size, m_MaxFeatures, m_ChanceRoom, m_ChanceCorridor);
 		m_DungeonMap = m_DungeonGenerator.Generate();
+		ClearMap();
 
 		ColorizeMap();
 	}
