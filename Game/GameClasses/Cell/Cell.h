@@ -1,44 +1,24 @@
-//-----------------------------------------------------------------
-// Main Game  File
-// C++ Header - X.h - version v7_02			
-//-----------------------------------------------------------------
-
 #pragma once
-
-//-----------------------------------------------------------------
-// Include Files
-//-----------------------------------------------------------------
-
-#include "../../../Resource.h"	
 
 #include "../../Mappings/ColorMapper/ColorMapper.h"
 #include "../../GameEngine/GameEngine.h"
 #include "../../AbstractGame/AbstractGame.h"
 
-//-----------------------------------------------------------------
-// X Class																
-//-----------------------------------------------------------------
+#include "../../../Resource.h"	
+
 class Cell : public AbstractGame, public Callable
 {
 public:
-	//---------------------------
-	// Constructor(s) and Destructor
-	//---------------------------
+
 	Cell(POINT pos, COLORREF color, int size);
 
 	virtual ~Cell() override;
 
-	//---------------------------
-	// Disabling copy/move constructors and assignment operators   
-	//---------------------------
 	Cell(const Cell& other) = delete;
 	Cell(Cell&& other) noexcept = delete;
 	Cell& operator=(const Cell& other) = delete;
 	Cell& operator=(Cell&& other) noexcept = delete;
 
-	//---------------------------
-	// General Methods
-	//---------------------------
 	void Initialize(HINSTANCE hInstance) override;
 	void Start() override;
 	void End() override;
@@ -54,9 +34,6 @@ public:
 	void SetColor(const std::string& colorName) { m_Color = ColorMapper::GetColor(colorName); }
 
 private:
-	// -------------------------
-	// Datamembers
-	// -------------------------
 
 	int m_Size;
 
