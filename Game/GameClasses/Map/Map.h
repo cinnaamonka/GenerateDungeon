@@ -62,7 +62,8 @@ private:
 	// -------------------------
 
 	int m_Size;
-	int numberOfDisplayedCells;
+	int m_IsGamePaused;
+	int m_NumberOfDisplayedCells;
 	int m_MaxFeatures;
 	int m_ChanceRoom;
 	int m_ChanceCorridor;

@@ -17,7 +17,8 @@
 
 Map::Map(int size, int maxFeatures /* = 100 */, int chanceRoom /* = 100 */, int chanceCorridor /* = 0 */) :
 	m_Size(size),
-	numberOfDisplayedCells{ 0 },
+	m_NumberOfDisplayedCells(0),
+	m_IsGamePaused(false),
 	m_MaxFeatures(maxFeatures),
 	m_ChanceRoom(chanceRoom),
 	m_ChanceCorridor(chanceCorridor),
@@ -92,7 +93,7 @@ void Map::ColorizeMap()
 
 	std::sort(tiles.begin(), tiles.end(), compareCells);
 
-	for (int i = 0; i < numberOfDisplayedCells; i++)
+	for (int i = 0; i < m_NumberOfDisplayedCells; i++)
 	{
 		const auto& tile = tiles[i].data.second;
 		const auto& mapIndex = tiles[i].data.first;
@@ -114,7 +115,7 @@ void Map::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wPara
 		m_DungeonGenerator = DungeonGenerator(m_Size, m_Size, m_MaxFeatures, m_ChanceRoom, m_ChanceCorridor);
 		m_DungeonMap = m_DungeonGenerator.Generate();
 
-		numberOfDisplayedCells = 0;
+		m_NumberOfDisplayedCells = 0;
 
 		ClearMap();
 	}
@@ -156,31 +157,44 @@ void Map::CheckKeyboard()
 
 void Map::KeyPressed(TCHAR cKey)
 {
-	// DO NOT FORGET to use SetKeyList() !!
-
-	// Insert the code that needs to be executed when a key of choice is pressed
-	// Is executed as soon as the key is released
-	// You first need to specify the keys that the game engine needs to watch by using the SetKeyList() method
-
-	/* Example:
 	switch (cKey)
 	{
-	case _T('K'): case VK_LEFT:
-		GAME_ENGINE->MessageBox(_T("Moving left."));
+	case _T('R'):
+		ClearMap();
+
+		m_NumberOfDisplayedCells = 0;
+
 		break;
-	case _T('L'): case VK_DOWN:
-		GAME_ENGINE->MessageBox(_T("Moving down."));
+
+	case _T('P'):
+		m_IsGamePaused = ~m_IsGamePaused;
+
 		break;
-	case _T('M'): case VK_RIGHT:
-		GAME_ENGINE->MessageBox(_T("Moving right."));
+
+
+	case VK_LEFT:
+		if (m_NumberOfDisplayedCells > 0 && m_IsGamePaused)
+		{
+			--m_NumberOfDisplayedCells;
+
+			ClearMap();
+			ColorizeMap();
+		}
+
 		break;
-	case _T('O'): case VK_UP:
-		GAME_ENGINE->MessageBox(_T("Moving up."));
+	case VK_RIGHT:
+		const int mapSize = m_Cells.size() * m_Cells.size();
+
+		if (m_NumberOfDisplayedCells < mapSize && m_IsGamePaused)
+		{
+			++m_NumberOfDisplayedCells;
+
+			ColorizeMap();
+		}
+
 		break;
-	case VK_ESCAPE:
-		GAME_ENGINE->MessageBox(_T("Escape menu."));
 	}
-	*/
+
 }
 
 void Map::Paint(RECT rect)
@@ -197,9 +211,9 @@ void Map::Paint(RECT rect)
 void Map::Tick() {
 	const int mapSize = m_Cells.size() * m_Cells.size();
 
-	if (numberOfDisplayedCells < mapSize)
+	if (m_NumberOfDisplayedCells < mapSize && !m_IsGamePaused)
 	{
-		++numberOfDisplayedCells;
+		++m_NumberOfDisplayedCells;
 
 		ColorizeMap();
 	}

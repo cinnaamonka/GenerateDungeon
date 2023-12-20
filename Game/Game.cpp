@@ -29,25 +29,25 @@ Game::~Game()
 
 void Game::Initialize(HINSTANCE hInstance)
 {
-	// Set the required values
 	AbstractGame::Initialize(hInstance);
+
 	GAME_ENGINE->SetTitle(_T("Game Engine version 7_02"));
 	GAME_ENGINE->RunGameLoop(true);
 
-
-	// Set the optional values
 	GAME_ENGINE->SetWidth(m_ScreenSize);
 	GAME_ENGINE->SetHeight(m_ScreenSize);
 	GAME_ENGINE->SetFrameRate(50);
 
-	m_pMap->Initialize(hInstance);
+	tstringstream buffer;
 
-	// Set the keys that the game needs to listen to
-	//tstringstream buffer;
-	//buffer << _T("KLMO");
-	//buffer << (TCHAR) VK_LEFT;
-	//buffer << (TCHAR) VK_RIGHT;
-	//GAME_ENGINE->SetKeyList(buffer.str());
+	buffer << _T("PR");
+
+	buffer << (TCHAR)VK_LEFT;
+	buffer << (TCHAR)VK_RIGHT;
+
+	GAME_ENGINE->SetKeyList(buffer.str());
+
+	m_pMap->Initialize(hInstance);
 }
 
 void Game::Start()
@@ -101,6 +101,7 @@ void Game::CheckKeyboard()
 
 void Game::KeyPressed(TCHAR cKey)
 {
+	m_pMap->KeyPressed(cKey);
 	// DO NOT FORGET to use SetKeyList() !!
 
 	// Insert the code that needs to be executed when a key of choice is pressed
