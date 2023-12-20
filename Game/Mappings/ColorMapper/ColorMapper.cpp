@@ -1,6 +1,5 @@
 #include "ColorMapper.h"
 
-
 ColorMapper::ColorMapper() {}
 
 std::map<std::string, COLORREF> ColorMapper::colorMap = {
