@@ -1,13 +1,5 @@
-//-----------------------------------------------------------------
-// Main Game  File
-// C++ Header - X.h - version v7_02			
-//-----------------------------------------------------------------
-
 #pragma once
 
-//-----------------------------------------------------------------
-// Include Files
-//-----------------------------------------------------------------
 #include "../Resource.h"	
 
 #include "GameClasses/Map/Map.h"
@@ -15,34 +7,22 @@
 #include "../Game/GameEngine/GameEngine.h"	
 #include "../Game/AbstractGame/AbstractGame.h"
 
-
 class Cell;
 class Map;
 
-//-----------------------------------------------------------------
-// X Class																
-//-----------------------------------------------------------------
 class Game : public AbstractGame, public Callable
 {
 public:
-	//---------------------------
-	// Constructor(s) and Destructor
-	//---------------------------
+
 	Game();
 
 	virtual ~Game() override;
 
-	//---------------------------
-	// Disabling copy/move constructors and assignment operators   
-	//---------------------------
 	Game(const Game& other) = delete;
 	Game(Game&& other) noexcept = delete;
 	Game& operator=(const Game& other) = delete;
 	Game& operator=(Game&& other) noexcept = delete;
 
-	//---------------------------
-	// General Methods
-	//---------------------------
 	void Initialize(HINSTANCE hInstance) override;
 	void Start() override;
 	void End() override;
@@ -57,9 +37,6 @@ public:
 	void CallAction(Caller* callerPtr) override;
 
 private:
-	// -------------------------
-	// Datamembers
-	// -------------------------
 
 	int m_Size;
 	COLORREF m_Color;
@@ -68,7 +45,7 @@ private:
 	int m_MaxLength;
 
 	int m_ScreenSize;
-	
+
 
 	Map* m_pMap;
 };
