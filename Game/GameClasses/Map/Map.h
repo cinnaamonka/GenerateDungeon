@@ -45,6 +45,7 @@ public:
 	void Start() override;
 	void End() override;
 	void Paint(RECT rect) override;
+
 	void Tick() override;
 	void MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wParam) override;
 	void MouseWheelAction(int x, int y, int distance, WPARAM wParam) override;
@@ -64,6 +65,7 @@ private:
 	int m_Size;
 	int m_IsGamePaused;
 	int m_NumberOfDisplayedCells;
+	int cellsPerTick;
 	int m_MaxFeatures;
 	int m_ChanceRoom;
 	int m_ChanceCorridor;

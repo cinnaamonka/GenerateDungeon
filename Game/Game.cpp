@@ -44,6 +44,8 @@ void Game::Initialize(HINSTANCE hInstance)
 
 	buffer << (TCHAR)VK_LEFT;
 	buffer << (TCHAR)VK_RIGHT;
+	buffer << (TCHAR)VK_UP;
+	buffer << (TCHAR)VK_DOWN;
 
 	GAME_ENGINE->SetKeyList(buffer.str());
 

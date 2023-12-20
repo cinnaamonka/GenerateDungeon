@@ -18,6 +18,7 @@
 Map::Map(int size, int maxFeatures /* = 100 */, int chanceRoom /* = 100 */, int chanceCorridor /* = 0 */) :
 	m_Size(size),
 	m_NumberOfDisplayedCells(0),
+	cellsPerTick(1),
 	m_IsGamePaused(false),
 	m_MaxFeatures(maxFeatures),
 	m_ChanceRoom(chanceRoom),
@@ -160,41 +161,70 @@ void Map::KeyPressed(TCHAR cKey)
 	switch (cKey)
 	{
 	case _T('R'):
+	{
 		ClearMap();
 
 		m_NumberOfDisplayedCells = 0;
 
 		break;
-
+	}
 	case _T('P'):
+	{
 		m_IsGamePaused = ~m_IsGamePaused;
 
 		break;
-
-
+	}
 	case VK_LEFT:
+	{
 		if (m_NumberOfDisplayedCells > 0 && m_IsGamePaused)
 		{
-			--m_NumberOfDisplayedCells;
+			m_NumberOfDisplayedCells -= cellsPerTick;
+
+			if (m_NumberOfDisplayedCells < 0) m_NumberOfDisplayedCells = 0;
 
 			ClearMap();
 			ColorizeMap();
 		}
 
 		break;
+	}
 	case VK_RIGHT:
+	{
 		const int mapSize = m_Cells.size() * m_Cells.size();
 
 		if (m_NumberOfDisplayedCells < mapSize && m_IsGamePaused)
 		{
-			++m_NumberOfDisplayedCells;
+			m_NumberOfDisplayedCells += cellsPerTick;
+
+			if (m_NumberOfDisplayedCells > mapSize) m_NumberOfDisplayedCells = mapSize;
 
 			ColorizeMap();
 		}
 
 		break;
 	}
+	case VK_UP:
+	{
+		const int mapSize = m_Cells.size() * m_Cells.size();
 
+		if (cellsPerTick < mapSize)
+		{
+			++cellsPerTick;
+		}
+
+		break;
+	}
+	case VK_DOWN:
+	{
+
+		if (cellsPerTick > 1)
+		{
+			--cellsPerTick;
+		}
+
+		break;
+	}
+	}
 }
 
 void Map::Paint(RECT rect)
@@ -213,7 +243,9 @@ void Map::Tick() {
 
 	if (m_NumberOfDisplayedCells < mapSize && !m_IsGamePaused)
 	{
-		++m_NumberOfDisplayedCells;
+		m_NumberOfDisplayedCells += cellsPerTick;
+
+		if (m_NumberOfDisplayedCells > mapSize) m_NumberOfDisplayedCells = mapSize;
 
 		ColorizeMap();
 	}
