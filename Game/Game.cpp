@@ -18,7 +18,7 @@
 
 Game::Game() :m_ScreenSize{ 900 }
 {
-	m_pMap = new Map(20);
+	m_pMap = new Map(100);
 }
 
 Game::~Game()
@@ -136,8 +136,12 @@ void Game::Paint(RECT rect)
 
 void Game::Tick()
 {
-	m_pMap->Tick();
+	const int ticks = 1;
 
+	for (int i = 0; i < ticks; ++i)
+	{
+		m_pMap->Tick();
+	}
 }
 
 void Game::CallAction(Caller* callerPtr)

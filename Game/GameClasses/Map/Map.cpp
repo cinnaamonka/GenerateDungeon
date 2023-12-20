@@ -17,6 +17,7 @@
 
 Map::Map(int size, int maxFeatures /* = 100 */, int chanceRoom /* = 100 */, int chanceCorridor /* = 0 */) :
 	m_Size(size),
+	numberOfDisplayedCells{ 0 },
 	m_MaxFeatures(maxFeatures),
 	m_ChanceRoom(chanceRoom),
 	m_ChanceCorridor(chanceCorridor),
@@ -66,8 +67,6 @@ void Map::Initialize(HINSTANCE hInstance)
 void Map::Start()
 {
 	m_DungeonMap = m_DungeonGenerator.Generate();
-
-	ColorizeMap();
 }
 
 void Map::ColorizeCell(Cell* cell, Tile tile) const
@@ -82,13 +81,18 @@ void Map::ColorizeMap()
 {
 	std::vector<DungeonCell> tiles = m_DungeonMap.GetCells();
 
-	auto compareFunction = [](const DungeonCell& a, const DungeonCell& b) {
-		return (a.orderIndex == -1) ? false : ((b.orderIndex == -1) ? true : (a.orderIndex < b.orderIndex));
+	const auto compareCells = [](const DungeonCell& a, const DungeonCell& b)
+	{
+		if (a.orderIndex == -1) { return false; }
+
+		if (b.orderIndex == -1) { return true; }
+
+		return a.orderIndex < b.orderIndex;
 	};
 
-	std::sort(tiles.begin(), tiles.end(), compareFunction);
+	std::sort(tiles.begin(), tiles.end(), compareCells);
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < numberOfDisplayedCells; i++)
 	{
 		const auto& tile = tiles[i].data.second;
 		const auto& mapIndex = tiles[i].data.first;
@@ -109,9 +113,10 @@ void Map::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wPara
 	{
 		m_DungeonGenerator = DungeonGenerator(m_Size, m_Size, m_MaxFeatures, m_ChanceRoom, m_ChanceCorridor);
 		m_DungeonMap = m_DungeonGenerator.Generate();
-		ClearMap();
 
-		ColorizeMap();
+		numberOfDisplayedCells = 0;
+
+		ClearMap();
 	}
 }
 
@@ -187,10 +192,17 @@ void Map::Paint(RECT rect)
 	{
 		cell->Paint(rect);
 	}
-
 }
 
 void Map::Tick() {
+	const int mapSize = m_Cells.size() * m_Cells.size();
+
+	if (numberOfDisplayedCells < mapSize)
+	{
+		++numberOfDisplayedCells;
+
+		ColorizeMap();
+	}
 }
 
 
