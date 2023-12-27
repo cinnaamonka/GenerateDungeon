@@ -81,8 +81,10 @@ e) If cell below is floor or corridor we will build a feature from the southern 
 
 6. Then we decides whether or not to add the feature. If the area under consideration contains anything other than solid earth already, then the routine loops back to step 3.
 
-7.  Algorithm just loops back to build more rooms. The exact number of times that you want to do this will depend on map size and various other factors.
+7-8.  Algorithm just loops back to build more rooms. The exact number of times that you want to do this will depend on map size and various other factors.
    
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/ef5da565-501b-4d65-9147-eac485b12679)
 
+9. When all the features are added we colorize the last two unused tiles as enter and exit cells to show that all rooms and corridors are walkable.
+![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/345a39a6-bd42-4276-8997-dcdb3d6c8aa2)
 
