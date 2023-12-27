@@ -75,4 +75,7 @@ e) If cell below is floor or corridor we will build a feature from the southern 
 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/ac52897e-22d1-4f0c-9ad3-642cc10bc11f)
 
+5.Then we need to check if the area which is occupied by the feature is unused. This step is done before the drawing part and this part of algorith is shown below. I am checking if all the room's cells are unused and then I build a feature.
+
+![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/679c4377-4cca-45ec-b640-c661508718dd)
 
