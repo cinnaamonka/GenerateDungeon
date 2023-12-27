@@ -57,14 +57,22 @@ I have added enums with types of tiles and types of directions into different fi
 1.In the first and second steps I am filling the map using FillRect function and choosing randomly a place to put the first room.
 ![FirstRoom](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/1e0f80d9-0ea5-4c5b-9d64-0393bbc053ae)
 
-
 3. Rather than randomly selecting squares for new features, our algorithm follows a deliberate approach. Algorithm searches for the next place to fill with walkable tile.
 
 a) If current cell is not a floor of a corridor, we can make feature here.
+
 b) If cell above is floor or corridor we will build a feature from the northern wall of the existing room.
+
 c) If cell to the right is floor or corridor we will build a feature from the western wall of the existing room.
+
 d) If cell to the left is floor or corridor we will build a feature from the eastern wall of the existing room.
+
 e) If cell below is floor or corridor we will build a feature from the southern wall of the existing room.
 
-![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/655f4a73-3f38-4d86-92f1-c9071cbc7207)
+![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/0f680bdb-0c3f-419b-a4c7-7c3859b37752)
+
+4. Let's decide which feature to build. It is just the random probability between 0 and 100. We choose which feature to build just comparing this probability with weights of probabilities of different features.
+
+![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/ac52897e-22d1-4f0c-9ad3-642cc10bc11f)
+
 
