@@ -107,21 +107,12 @@ void Map::CheckKeyboard() {}
 
 void Map::KeyPressed(TCHAR cKey)
 {
-	const auto resetKey = _T('R');
 	const auto pauseKey = _T('P');
 	const auto arrowLeftKey = VK_LEFT;
 	const auto arrowRightKey = VK_RIGHT;
 
 	switch (cKey)
 	{
-	case resetKey:
-	{
-		ClearMap();
-
-		m_NumberOfDisplayedCells = 0;
-
-		break;
-	}
 	case pauseKey:
 	{
 		m_IsPaintingPaused = !m_IsPaintingPaused;

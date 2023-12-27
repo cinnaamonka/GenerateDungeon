@@ -120,6 +120,11 @@ void Game::Paint(RECT rect)
 	GAME_ENGINE->DrawString(_T("Max features"), 130, 20);
 	GAME_ENGINE->DrawString(_T("Corridor chance"), 130, 120);
 	GAME_ENGINE->DrawString(_T("Room chance"), 130, 70);
+	GAME_ENGINE->DrawString(_T("Pause - P"), 550, 30);
+	GAME_ENGINE->DrawString(_T("Faster - up arrow"), 550, 60);
+	GAME_ENGINE->DrawString(_T("Slower - down arrow"), 550, 90);
+	GAME_ENGINE->DrawString(_T("Next step - right arrow"), 550, 120);
+	GAME_ENGINE->DrawString(_T("Prior step - left arrow"), 550, 150);
 	GAME_ENGINE->DrawString(m_ChanceCorridors, 75, 120);
 }
 
