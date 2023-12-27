@@ -82,6 +82,7 @@ e) If cell below is floor or corridor we will build a feature from the southern 
 6. Then we decides whether or not to add the feature. If the area under consideration contains anything other than solid earth already, then the routine loops back to step 3.
 
 7.  Algorithm just loops back to build more rooms. The exact number of times that you want to do this will depend on map size and various other factors.
+   
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/ef5da565-501b-4d65-9147-eac485b12679)
 
 
