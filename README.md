@@ -4,8 +4,9 @@
 The Dungeon Generation Algorithm takes inspiration from probability theory to introduce an element of unpredictability and complexity into your dungeon environments. By leveraging probabilistic principles, I have crafted a tool that goes beyond traditional methods, offering a dynamic and ever-changing canvas for game worlds.
 
 My project has been created with the C++ Win32 Engine developed by my teacher at University of Applied Science Howest.
+The algorithm is inspired by Tyrant's technique, this strategic selection maintains both aesthetic coherence and equal probability distribution for a balanced and elegant dungeon generation. 
 
-I am also using a small visual techique to show that all the room and corridors in the dungeon are walkable by adding enter and exit points to my visual representation.
+I am also using a small visual techique to show that all the room and corridors in the dungeon are walkable by adding enter and exit stairs to my visual representation.
 
 ## Key Features ##
 
@@ -44,7 +45,7 @@ In this algorithm, a "feature" refers to any type of map component, such as a la
 
 8.Go back to step 3, until the dungeon is complete
 
-9.Add the enter and exit at random points in map
+9.Add the enter and exit stairs at random points in map
 
 # Step by step explanation #
 
@@ -53,6 +54,8 @@ In this algorithm, a "feature" refers to any type of map component, such as a la
 
 I have added enums with types of tiles and types of directions into different file for convenience.
 
-1.In the first step I am filling the map using FillRect function and choosing randomly a place to put the first room.
+1.In the first and second steps I am filling the map using FillRect function and choosing randomly a place to put the first room.
 ![FirstRoom](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/1e0f80d9-0ea5-4c5b-9d64-0393bbc053ae)
+3. Rather than randomly selecting squares for new features, our algorithm follows a deliberate approach. By focusing on wall squares adjacent to clear ones (horizontally or vertically), the method ensures visually pleasing connections and guarantees accessibility to every square. 
+![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/655f4a73-3f38-4d86-92f1-c9071cbc7207)
 
