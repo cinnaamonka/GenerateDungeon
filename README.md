@@ -29,13 +29,21 @@ Overview
 In this algorithm, a "feature" refers to any type of map component, such as a large room, small room, corridor, circular arena, vault, and more.
 
 1.Fill the whole map with solid earth
+
 2.Dig out a single room in the centre of the map
+
 3.Pick a wall of any room
+
 4.Decide upon a new feature to build
+
 5.See if there is room to add the new feature through the chosen wall
+
 6.If yes, continue. If no, go back to step 3
+
 7.Add the feature through the chosen wall
+
 8.Go back to step 3, until the dungeon is complete
+
 9.Add the enter and exit at random points in map
 
 
