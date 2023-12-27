@@ -44,9 +44,24 @@ public:
 	{
 		m_ChanceRoom = maxChanceRoom;
 	}
+	void SetMaxChanceFeature(int maxFeatures)
+	{
+		m_MaxFeatures = maxFeatures;
+	}
 	void SetMaxChanceCorridor(int maxChanceCorridor)
 	{
 		m_ChanceCorridor = maxChanceCorridor;
+	}
+	void StartDungeonGeneration()
+	{
+		m_IsPaintingPaused = false;
+
+		m_DungeonGenerator = DungeonGenerator(m_Size, m_Size, m_MaxFeatures, m_ChanceRoom, m_ChanceCorridor);
+		m_DungeonMap = m_DungeonGenerator.Generate();
+
+		m_NumberOfDisplayedCells = 0;
+
+		ClearMap();
 	}
 private:
 
@@ -55,7 +70,7 @@ private:
 	int m_NumberOfDisplayedCells;
 	int m_CellsPerTick;
 
-	int m_IsPaintingPaused;
+	bool m_IsPaintingPaused;
 
 	int m_MaxFeatures;
 	int m_ChanceRoom;

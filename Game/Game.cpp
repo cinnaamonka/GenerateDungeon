@@ -4,6 +4,31 @@
 
 #include "Game.h"
 
+class NegativeNumberException : public std::exception 
+{
+public:
+	const char* what() const noexcept override
+	{
+		return "Negative number not allowed.";
+	}
+};
+
+class NotANumberException : public std::exception 
+{
+public:
+	const char* what() const noexcept override 
+	{
+		return "Input is not a valid number.";
+	}
+};
+class BiggerThan100 : public std::exception 
+{
+public:
+	const char* what() const noexcept override 
+	{
+		return "Chance is higher than 100";
+	}
+};
 
 Game::Game() :m_ScreenSize{ 900 }
 {
@@ -35,8 +60,6 @@ void Game::Initialize(HINSTANCE hInstance)
 
 	GAME_ENGINE->SetKeyList(buffer.str());
 
-	
-
 	m_pMap->Initialize(hInstance);
 }
 
@@ -44,10 +67,10 @@ void Game::Start()
 {
 	m_pMap->Start();
 
-	m_pChanceRoomTextBox = new TextBox();
-	m_pChanceRoomTextBox->SetBounds(25, 25, 100, 25);
-	m_pChanceRoomTextBox->AddActionListener(this);
-	m_pChanceRoomTextBox->Show();
+	m_pFeaturesTextBox = new TextBox();
+	m_pFeaturesTextBox->SetBounds(25, 25, 100, 25);
+	m_pFeaturesTextBox->AddActionListener(this);
+	m_pFeaturesTextBox->Show();
 
 	m_pFont = new Font(_T("Verdana"), true, false, false, 32);
 
@@ -56,8 +79,13 @@ void Game::Start()
 	m_pChanceCorridorTextBox->AddActionListener(this);
 	m_pChanceCorridorTextBox->Show();
 
+	m_pChanceRoomTextBox = new TextBox();
+	m_pChanceRoomTextBox->SetBounds(25, 125, 100, 25);
+	m_pChanceRoomTextBox->AddActionListener(this);
+	m_pChanceRoomTextBox->Show();
+
 	m_pButton = new Button();
-	m_pButton->SetBounds(30, 130, 200, 40);
+	m_pButton->SetBounds(25, 160, 200, 40);
 	m_pButton->SetText(L"Generate Dungeon");
 	m_pButton->AddActionListener(this);
 	m_pButton->Show();
@@ -66,6 +94,7 @@ void Game::Start()
 void Game::End() 
 {
 	delete m_pChanceRoomTextBox;
+	delete m_pFeaturesTextBox;
 	delete m_pChanceCorridorTextBox;
 	delete m_pFont;
 	delete m_pButton;
@@ -94,8 +123,9 @@ void Game::Paint(RECT rect)
 	GAME_ENGINE->SetFont(m_pFont);
 	GAME_ENGINE->SetColor(RGB(27, 27, 27));
 
-	GAME_ENGINE->DrawString(_T("Room chance"), 130, 20);
+	GAME_ENGINE->DrawString(_T("Max features"), 130, 20);
 	GAME_ENGINE->DrawString(_T("Corridor chance"), 130, 70);
+	GAME_ENGINE->DrawString(_T("Room chance"), 130, 120);
 }
 
 void Game::Tick()
@@ -113,20 +143,70 @@ void Game::CallAction(Caller* callerPtr)
 {
 	if (callerPtr == m_pButton)
 	{
-		try 
+		try
 		{
-			int maxChanceRoom = std::stoi(m_pChanceRoomTextBox->GetText());
-			int maxChanceCorridor = std::stoi(m_pChanceCorridorTextBox->GetText());
+			std::wstring wsRoom(m_pChanceRoomTextBox->GetText());
+			std::wstring wsCorridor(m_pChanceCorridorTextBox->GetText());
+			std::wstring wsFeature(m_pFeaturesTextBox->GetText());
 
-			m_pMap->SetMaxChanceRoom(maxChanceRoom);
-			m_pMap->SetMaxChanceCorridor(maxChanceCorridor);
+			int maxChanceRoom = 0;
+			int maxChanceCorridor = 0;
+			int maxFeatures = 0;
+
+		
+			if (wsFeature == _T(""))
+			{
+				maxFeatures = 100;
+				m_pMap->SetMaxChanceFeature(maxFeatures);
+			}
+			else
+			{
+				if (std::stoi(wsRoom) > 100)
+				{
+					throw BiggerThan100();
+				}
+
+				m_pMap->SetMaxChanceFeature(std::stoi(wsFeature));
+			}
+			
+			if (wsCorridor == _T(""))
+			{
+				maxChanceCorridor = 100;
+				m_pMap->SetMaxChanceCorridor(maxChanceCorridor);
+			}
+			else
+			{
+				if (std::stoi(wsCorridor) > 100)
+				{
+					throw BiggerThan100();
+
+				}
+				m_pMap->SetMaxChanceCorridor(std::stoi(wsCorridor));
+			}
+
+			if (wsRoom == _T(""))
+			{
+				maxChanceRoom = 100 - std::stoi(wsCorridor);
+				m_pMap->SetMaxChanceRoom(maxChanceRoom);
+			}
+			else
+			{
+				m_pMap->SetMaxChanceRoom(std::stoi(wsRoom));
+			}
+
+			
+
+			
+
+			m_pMap->StartDungeonGeneration();
+
 		}
 		
 		catch (const std::invalid_argument& e) 
 		{
 			// This is for NotANumberException
+			m_pFeaturesTextBox->SetText(_T(""));
 			m_pChanceRoomTextBox->SetText(_T(""));
-			
 			m_pChanceCorridorTextBox->SetText(_T(""));
 
 			std::wstringstream wss;
@@ -143,9 +223,49 @@ void Game::CallAction(Caller* callerPtr)
 			wss << e.what();
 			std::wstring notANumberExceptionWString = wss.str();
 
-			m_pChanceRoomTextBox->SetText(_T(""));
+			m_pFeaturesTextBox->SetText(_T(""));
 			m_pChanceCorridorTextBox->SetText(_T(""));
+			m_pChanceRoomTextBox->SetText(_T(""));
 			GAME_ENGINE->MessageBox(notANumberExceptionWString); 
+		}
+		catch (const BiggerThan100& e)
+		{
+			// This is for NotANumberException
+
+			std::wstringstream wss;
+			wss << e.what();
+			std::wstring notANumberExceptionWString = wss.str();
+
+			m_pFeaturesTextBox->SetText(_T(""));
+			m_pChanceCorridorTextBox->SetText(_T(""));
+			m_pChanceRoomTextBox->SetText(_T(""));
+			GAME_ENGINE->MessageBox(notANumberExceptionWString);
+		}
+		catch (const NegativeNumberException& e) 
+		{
+			std::wstringstream wss;
+			wss << e.what();
+			std::wstring notANumberExceptionWString = wss.str();
+
+			m_pFeaturesTextBox->SetText(_T(""));
+			m_pChanceCorridorTextBox->SetText(_T(""));
+			m_pChanceRoomTextBox->SetText(_T(""));
+			GAME_ENGINE->MessageBox(notANumberExceptionWString);
+		}
+		catch (const NotANumberException& e) 
+		{
+			std::wstringstream wss;
+			wss << e.what();
+			std::wstring notANumberExceptionWString = wss.str();
+
+			m_pFeaturesTextBox->SetText(_T(""));
+			m_pChanceCorridorTextBox->SetText(_T(""));
+			m_pChanceRoomTextBox->SetText(_T(""));
+			GAME_ENGINE->MessageBox(notANumberExceptionWString);
+		}
+		catch (...)
+		{
+			GAME_ENGINE->MessageBox(_T("Invalid argument."));
 		}
 		
 		

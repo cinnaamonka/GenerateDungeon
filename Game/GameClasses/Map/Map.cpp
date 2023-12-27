@@ -8,7 +8,7 @@ Map::Map(int size, int maxFeatures /* = 100 */, int chanceRoom /* = 100 */, int 
 	m_Size(size),
 	m_NumberOfDisplayedCells(0),
 	m_CellsPerTick(1),
-	m_IsPaintingPaused(false),
+	m_IsPaintingPaused(true),
 	m_MaxFeatures(maxFeatures),
 	m_ChanceRoom(chanceRoom),
 	m_ChanceCorridor(chanceCorridor),
@@ -96,16 +96,6 @@ void Map::End() {}
 
 void Map::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wParam)
 {
-
-	if (isLeft && isDown)
-	{
-		m_DungeonGenerator = DungeonGenerator(m_Size, m_Size, m_MaxFeatures, m_ChanceRoom, m_ChanceCorridor);
-		m_DungeonMap = m_DungeonGenerator.Generate();
-
-		m_NumberOfDisplayedCells = 0;
-
-		ClearMap();
-	}
 }
 
 
@@ -134,7 +124,7 @@ void Map::KeyPressed(TCHAR cKey)
 	}
 	case pauseKey:
 	{
-		m_IsPaintingPaused = ~m_IsPaintingPaused;
+		m_IsPaintingPaused = !m_IsPaintingPaused;
 
 		break;
 	}

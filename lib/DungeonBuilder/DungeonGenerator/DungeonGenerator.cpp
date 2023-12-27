@@ -102,14 +102,17 @@ bool DungeonGenerator::MakeRoom(DungeonMap& map, RngT& rng, const int x, const i
 	return true;
 }
 
-bool DungeonGenerator::MakeFeature(DungeonMap& map, RngT& rng, const int x, const int y, const int xmod, const int ymod, const Direction direction) const {
+bool DungeonGenerator::MakeFeature(DungeonMap& map, RngT& rng, const int x, const int y, const int xmod, const int ymod, const Direction direction) const 
+{
 	const int chance = GetRandomInt(rng, 0, 100);
 
 	const int xMaxLength = 8;
 	const int yMaxLength = 6;
 
-	if (chance <= ChanceRoom) {
-		if (MakeRoom(map, rng, x + xmod, y + ymod, xMaxLength, yMaxLength, direction)) {
+	if (chance <= ChanceRoom) 
+	{
+		if (MakeRoom(map, rng, x + xmod, y + ymod, xMaxLength, yMaxLength, direction)) 
+		{
 			map.SetCell(x, y, Tile::Door);
 			map.SetCell(x + xmod, y + ymod, Tile::DirtFloor);
 
@@ -119,7 +122,8 @@ bool DungeonGenerator::MakeFeature(DungeonMap& map, RngT& rng, const int x, cons
 		return false;
 	}
 	else {
-		if (MakeCorridor(map, rng, x + xmod, y + ymod, yMaxLength, direction)) {
+		if (MakeCorridor(map, rng, x + xmod, y + ymod, yMaxLength, direction)) 
+		{
 			map.SetCell(x, y, Tile::Door);
 
 			return true;

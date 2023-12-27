@@ -50,8 +50,9 @@ private:
 	COLORREF m_Color;
 	POINT m_Position;
 
-	TextBox* m_pChanceRoomTextBox;
+	TextBox* m_pFeaturesTextBox;
 	TextBox* m_pChanceCorridorTextBox;
+	TextBox* m_pChanceRoomTextBox;
 	Font* m_pFont;
 
 	Button* m_pButton;
