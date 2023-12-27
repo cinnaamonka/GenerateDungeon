@@ -119,18 +119,29 @@ Also I provide the keys to play with the algorithm:
 
 **Down Arrow** : We can decrease the speed of the algorithm
 
-## Conclusion ##
+## First versions of algorithm ##
 
 I have really enjoyed working on this algorithm. It was the first time I encounter the task like this so I have started with simpler versions of this algorithm. I would like also to show this.
 
-This is the first and fast implementations of this algorithm:
+This is the first and fast implementation. Imagine you have a grid like a big game board, and you want to make a path on it. The GetRandomDirection function helps you decide which way to go—up, down, left, or right.
+
+Here's how it works:
+
+a)Find the Center: You figure out where the center of your game board is.
+
+b)Calculate Weights: You use a special formula to decide how likely it is to go in each direction based on how far you are from the center. Closer directions get higher chances.
+
+c)Pick a Direction: Now, you pick a direction randomly, but it's more likely to be the one with the higher chance.
+
+The MakePath function uses this direction to move around the game board. It starts somewhere, and for each step, it randomly chooses a direction and moves that way. As it moves, it changes the color of the cells it passes through to show the path.
 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/8e40c485-0d27-4d22-99e4-fd7112204b99)
 
-Then I have added more interesting logic but this time I have't implemented any visual logic, so the dungeon looked like this. 
+Then I have added more interesting logic but this time I have't implemented any visual logic, so the dungeon looked like this. The algorithm used here almost the same as the one i have presented above but without visual representation.
 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/cc87239d-4283-4411-8816-1c8d9de83140)
 
+## Conclusion ##
 Expanding the scope of the project is feasible, as it could be transformed into a 3D dungeon generator compatible with a 3D game engine. This enhancement would empower game designers to craft complex dungeons spanning multiple levels.
 
 To sum up, by undergoing further refinement and optimization, the 2D Dungeon Generator has the potential to metamorphose into an even more formidable tool for game designers, amplifying its effectiveness and versatility in shaping immersive game environments.
