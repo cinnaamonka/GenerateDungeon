@@ -74,13 +74,8 @@ void Game::Start()
 
 	m_pFont = new Font(_T("Verdana"), true, false, false, 32);
 
-	m_pChanceCorridorTextBox = new TextBox();
-	m_pChanceCorridorTextBox->SetBounds(25, 75, 100, 25);
-	m_pChanceCorridorTextBox->AddActionListener(this);
-	m_pChanceCorridorTextBox->Show();
-
 	m_pChanceRoomTextBox = new TextBox();
-	m_pChanceRoomTextBox->SetBounds(25, 125, 100, 25);
+	m_pChanceRoomTextBox->SetBounds(25, 75, 100, 25);
 	m_pChanceRoomTextBox->AddActionListener(this);
 	m_pChanceRoomTextBox->Show();
 
@@ -95,7 +90,6 @@ void Game::End()
 {
 	delete m_pChanceRoomTextBox;
 	delete m_pFeaturesTextBox;
-	delete m_pChanceCorridorTextBox;
 	delete m_pFont;
 	delete m_pButton;
 }
@@ -124,8 +118,9 @@ void Game::Paint(RECT rect)
 	GAME_ENGINE->SetColor(RGB(27, 27, 27));
 
 	GAME_ENGINE->DrawString(_T("Max features"), 130, 20);
-	GAME_ENGINE->DrawString(_T("Corridor chance"), 130, 70);
-	GAME_ENGINE->DrawString(_T("Room chance"), 130, 120);
+	GAME_ENGINE->DrawString(_T("Corridor chance"), 130, 120);
+	GAME_ENGINE->DrawString(_T("Room chance"), 130, 70);
+	GAME_ENGINE->DrawString(m_ChanceCorridors, 75, 120);
 }
 
 void Game::Tick()
@@ -146,14 +141,12 @@ void Game::CallAction(Caller* callerPtr)
 		try
 		{
 			std::wstring wsRoom(m_pChanceRoomTextBox->GetText());
-			std::wstring wsCorridor(m_pChanceCorridorTextBox->GetText());
 			std::wstring wsFeature(m_pFeaturesTextBox->GetText());
 
 			int maxChanceRoom = 0;
-			int maxChanceCorridor = 0;
 			int maxFeatures = 0;
 
-		
+			
 			if (wsFeature == _T(""))
 			{
 				maxFeatures = 100;
@@ -161,43 +154,33 @@ void Game::CallAction(Caller* callerPtr)
 			}
 			else
 			{
-				if (std::stoi(wsRoom) > 100)
+				if (std::stoi(wsFeature) < 0)
 				{
-					throw BiggerThan100();
+					throw NegativeNumberException();
 				}
-
 				m_pMap->SetMaxChanceFeature(std::stoi(wsFeature));
 			}
 			
-			if (wsCorridor == _T(""))
-			{
-				maxChanceCorridor = 100;
-				m_pMap->SetMaxChanceCorridor(maxChanceCorridor);
-			}
-			else
-			{
-				if (std::stoi(wsCorridor) > 100)
-				{
-					throw BiggerThan100();
-
-				}
-				m_pMap->SetMaxChanceCorridor(std::stoi(wsCorridor));
-			}
-
 			if (wsRoom == _T(""))
 			{
-				maxChanceRoom = 100 - std::stoi(wsCorridor);
+				maxChanceRoom = 100;
 				m_pMap->SetMaxChanceRoom(maxChanceRoom);
 			}
 			else
 			{
+				if (std::stoi(wsRoom) > 100)
+				{
+					throw BiggerThan100();
+				}
+				if (std::stoi(wsRoom) < 0)
+				{
+					throw NegativeNumberException();
+				}
+				m_ChanceCorridors = std::to_wstring(100 - std::stoi(wsRoom));
+
 				m_pMap->SetMaxChanceRoom(std::stoi(wsRoom));
+				m_pMap->SetMaxChanceCorridor(100 - std::stoi(wsRoom));
 			}
-
-			
-
-			
-
 			m_pMap->StartDungeonGeneration();
 
 		}
@@ -207,26 +190,15 @@ void Game::CallAction(Caller* callerPtr)
 			// This is for NotANumberException
 			m_pFeaturesTextBox->SetText(_T(""));
 			m_pChanceRoomTextBox->SetText(_T(""));
-			m_pChanceCorridorTextBox->SetText(_T(""));
 
-			std::wstringstream wss;
-			wss << e.what(); 
-			std::wstring notANumberExceptionWString = wss.str();
-
-			GAME_ENGINE->MessageBox(notANumberExceptionWString); 
+			GAME_ENGINE->MessageBox(_T("Argument is not valid"));
 		}
 		catch (const std::out_of_range& e)
 		{
-			// This is for NotANumberException
-
-			std::wstringstream wss;
-			wss << e.what();
-			std::wstring notANumberExceptionWString = wss.str();
 
 			m_pFeaturesTextBox->SetText(_T(""));
-			m_pChanceCorridorTextBox->SetText(_T(""));
 			m_pChanceRoomTextBox->SetText(_T(""));
-			GAME_ENGINE->MessageBox(notANumberExceptionWString); 
+			GAME_ENGINE->MessageBox(_T("The input is not a number"));
 		}
 		catch (const BiggerThan100& e)
 		{
@@ -237,7 +209,6 @@ void Game::CallAction(Caller* callerPtr)
 			std::wstring notANumberExceptionWString = wss.str();
 
 			m_pFeaturesTextBox->SetText(_T(""));
-			m_pChanceCorridorTextBox->SetText(_T(""));
 			m_pChanceRoomTextBox->SetText(_T(""));
 			GAME_ENGINE->MessageBox(notANumberExceptionWString);
 		}
@@ -248,7 +219,6 @@ void Game::CallAction(Caller* callerPtr)
 			std::wstring notANumberExceptionWString = wss.str();
 
 			m_pFeaturesTextBox->SetText(_T(""));
-			m_pChanceCorridorTextBox->SetText(_T(""));
 			m_pChanceRoomTextBox->SetText(_T(""));
 			GAME_ENGINE->MessageBox(notANumberExceptionWString);
 		}
@@ -259,7 +229,6 @@ void Game::CallAction(Caller* callerPtr)
 			std::wstring notANumberExceptionWString = wss.str();
 
 			m_pFeaturesTextBox->SetText(_T(""));
-			m_pChanceCorridorTextBox->SetText(_T(""));
 			m_pChanceRoomTextBox->SetText(_T(""));
 			GAME_ENGINE->MessageBox(notANumberExceptionWString);
 		}
