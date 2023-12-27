@@ -49,7 +49,8 @@ In this algorithm, a "feature" refers to any type of map component, such as a la
 # Step by step explanation #
 
 0. I have added zero step to my explanation to show my useful file structure. 
-![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/93698857-f383-4485-a03d-899c744a5067)
+![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/6450fb17-c919-406f-8f70-3895e6481e79)
+
 
 
 
