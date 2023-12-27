@@ -51,12 +51,16 @@ In this algorithm, a "feature" refers to any type of map component, such as a la
 
 # Step 0 #
 I have added zero step to my explanation to show my useful file structure. I have added enums with types of tiles and types of directions into different file for convenience.
+
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/6450fb17-c919-406f-8f70-3895e6481e79)
 
-1.In the first and second steps I am filling the map using FillRect function and choosing randomly a place to put the first room.
+# Step 1-2 #
+In the first and second steps I am filling the map using FillRect function and choosing randomly a place to put the first room.
+
 ![FirstRoom](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/1e0f80d9-0ea5-4c5b-9d64-0393bbc053ae)
 
-3. Rather than randomly selecting squares for new features, our algorithm follows a deliberate approach. Algorithm searches for the next place to fill with walkable tile.
+# Step 3 #
+Rather than randomly selecting squares for new features, our algorithm follows a deliberate approach. Algorithm searches for the next place to fill with walkable tile.
 
 a) If current cell is not a floor of a corridor, we can make feature here.
 
@@ -70,21 +74,26 @@ e) If cell below is floor or corridor we will build a feature from the southern 
 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/0f680bdb-0c3f-419b-a4c7-7c3859b37752)
 
-4. Let's decide which feature to build. It is just the random probability between 0 and 100. We choose which feature to build just comparing this probability with weights of probabilities of different features.
+# Step 4 #
+Let's decide which feature to build. It is just the random probability between 0 and 100. We choose which feature to build just comparing this probability with weights of probabilities of different features.
 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/ac52897e-22d1-4f0c-9ad3-642cc10bc11f)
 
-5.Then we need to check if the area which is occupied by the feature is unused. This step is done before the drawing part and this part of algorith is shown below. I am checking if all the room's cells are unused and then I build a feature.
+# Step 5 #
+Then we need to check if the area which is occupied by the feature is unused. This step is done before the drawing part and this part of algorith is shown below. I am checking if all the room's cells are unused and then I build a feature.
 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/679c4377-4cca-45ec-b640-c661508718dd)
 
-6. Then we decides whether or not to add the feature. If the area under consideration contains anything other than solid earth already, then the routine loops back to step 3.
+# Step 6 #
+Then we decides whether or not to add the feature. If the area under consideration contains anything other than solid earth already, then the routine loops back to step 3.
 
-7-8.  Algorithm just loops back to build more rooms. The exact number of times that you want to do this will depend on map size and various other factors.
+# Step 7-8 #
+Algorithm just loops back to build more rooms. The exact number of times that you want to do this will depend on map size and various other factors.
    
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/ef5da565-501b-4d65-9147-eac485b12679)
 
-9. When all the features are added we colorize the last two unused tiles as enter and exit cells to show that all rooms and corridors are walkable.
+# Step 9 #
+When all the features are added we colorize the last two unused tiles as enter and exit cells to show that all rooms and corridors are walkable.
     
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/345a39a6-bd42-4276-8997-dcdb3d6c8aa2)
 
