@@ -4,7 +4,7 @@
 The Dungeon Generation Algorithm takes inspiration from probability theory to introduce an element of unpredictability and complexity into your dungeon environments. By leveraging probabilistic principles, I have crafted a tool that goes beyond traditional methods, offering a dynamic and ever-changing canvas for game worlds.
 
 My project has been created with the C++ Win32 Engine developed by my teacher at University of Applied Science Howest.
-The algorithm is inspired by Tyrant's technique, this strategic selection maintains both aesthetic coherence and equal probability distribution for a balanced and elegant dungeon generation. 
+The algorithm is inspired by Tyrant's technique, this strategic selection maintains both aesthetic coherence and equal probability distribution for a balanced and elegant dungeon generation. Also the RNG algorithm as a method of generating numerical values that are unpredictable and lacking in any sort of pattern.
 
 I am also using a small visual techique to show that all the room and corridors in the dungeon are walkable by adding enter and exit stairs to my visual representation.
 
@@ -146,3 +146,11 @@ Then I have added more interesting logic but this time I have't implemented any 
 Expanding the scope of the project is feasible, as it could be transformed into a 3D dungeon generator compatible with a 3D game engine. This enhancement would empower game designers to craft complex dungeons spanning multiple levels.
 
 To sum up, by undergoing further refinement and optimization, the 2D Dungeon Generator has the potential to metamorphose into an even more formidable tool for game designers, amplifying its effectiveness and versatility in shaping immersive game environments.
+
+
+## Resources ##
+
+https://www.roguebasin.com/index.php/Dungeon-Building_Algorithm
+https://www.roguebasin.com/index.php/C%2B%2B_Example_of_Dungeon-Building_Algorithm
+https://www.roguebasin.com/index.php/Random_number_generator
+chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.cs.cmu.edu/~112/notes/student-tp-guides/Mazes.pdf
