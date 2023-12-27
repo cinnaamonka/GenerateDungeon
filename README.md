@@ -135,7 +135,8 @@ c)Pick a Direction: Now, you pick a direction randomly, but it's more likely to 
 
 The MakePath function uses this direction to move around the game board. It starts somewhere, and for each step, it randomly chooses a direction and moves that way. As it moves, it changes the color of the cells it passes through to show the path.
 
-![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/8e40c485-0d27-4d22-99e4-fd7112204b99)
+![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/7336e500-a0f5-40d0-810b-72be9ede03b8)
+
 
 Then I have added more interesting logic but this time I have't implemented any visual logic, so the dungeon looked like this. The algorithm used here almost the same as the one i have presented above but without visual representation.
 
