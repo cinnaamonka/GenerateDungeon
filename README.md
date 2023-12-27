@@ -97,3 +97,16 @@ When all the features are added we colorize the last two unused tiles as enter a
     
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/345a39a6-bd42-4276-8997-dcdb3d6c8aa2)
 
+## UI ##
+
+**Max features input field**: Input field that will determine how many features will be implemented, including rooms and corridors. 
+**Max chance rooms input field** : Input field which determines what is the chance that the algorithm will draw a room. 
+**Max chance corridors** : Also just a probability which determaines what is the chance that the algorithm will draw a corridor. It is not an input field, it is calculated 100 - maxChanceRooms
+**Generate Dungeon Button** : If button is pressed, the new dungeon with new random seed is generated.
+
+Also I provide the keys to play with the algorithm:
+**P Key** : Pause  the proccess
+**Left arrow** : If the process is paused, we can walk to the previous step of the algorithm with left arrow key
+**Right arrow** : If the process is paused, we can walk to the next step of the algorithm with right arrow key
+**Up arrow** : We can increase the speed of the algorithm
+**Down Arrow** : We can decrease the speed of the algorithm
