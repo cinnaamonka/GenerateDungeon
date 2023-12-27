@@ -153,4 +153,4 @@ To sum up, by undergoing further refinement and optimization, the 2D Dungeon Gen
 https://www.roguebasin.com/index.php/Dungeon-Building_Algorithm
 https://www.roguebasin.com/index.php/C%2B%2B_Example_of_Dungeon-Building_Algorithm
 https://www.roguebasin.com/index.php/Random_number_generator
-/https://www.cs.cmu.edu/~112/notes/student-tp-guides/Mazes.pdf
+https://www.cs.cmu.edu/~112/notes/student-tp-guides/Mazes.pdf
