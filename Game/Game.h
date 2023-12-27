@@ -49,4 +49,10 @@ private:
 
 	COLORREF m_Color;
 	POINT m_Position;
+
+	TextBox* m_pChanceRoomTextBox;
+	TextBox* m_pChanceCorridorTextBox;
+	Font* m_pFont;
+
+	tstring m_Message;
 };
