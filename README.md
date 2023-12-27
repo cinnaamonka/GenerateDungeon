@@ -51,6 +51,8 @@ In this algorithm, a "feature" refers to any type of map component, such as a la
 0. I have added zero step to my explanation to show my useful file structure. 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/6450fb17-c919-406f-8f70-3895e6481e79)
 
+I have added enums with types of tiles and types of directions into different file for convenience.
 
-
+1.In the first step I am filling the map using FillRect function and choosing randomly a place to put the first room.
+![FirstRoom](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/1e0f80d9-0ea5-4c5b-9d64-0393bbc053ae)
 
