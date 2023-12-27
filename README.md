@@ -79,3 +79,8 @@ e) If cell below is floor or corridor we will build a feature from the southern 
 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/679c4377-4cca-45ec-b640-c661508718dd)
 
+6. Then we decides whether or not to add the feature. If the area under consideration contains anything other than solid earth already, then the routine loops back to step 3.
+
+7.  Algorithm just loops back to build more rooms. The exact number of times that you want to do this will depend on map size and various other factors.
+ [image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/a0cf3c53-c0cd-47be-ad39-7efa3628222a)
+
