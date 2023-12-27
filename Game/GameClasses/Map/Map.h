@@ -39,6 +39,15 @@ public:
 	void ColorizeCell(Cell* cell, Tile tile) const;
 
 	void ClearMap();
+
+	void SetMaxChanceRoom(int maxChanceRoom)
+	{
+		m_ChanceRoom = maxChanceRoom;
+	}
+	void SetMaxChanceCorridor(int maxChanceCorridor)
+	{
+		m_ChanceCorridor = maxChanceCorridor;
+	}
 private:
 
 	int m_Size;

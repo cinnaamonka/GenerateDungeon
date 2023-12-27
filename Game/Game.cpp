@@ -4,9 +4,10 @@
 
 #include "Game.h"
 
+
 Game::Game() :m_ScreenSize{ 900 }
 {
-	m_pMap = new Map(100,10000,70,30);
+	m_pMap = new Map(100);
 }
 
 Game::~Game() {}
@@ -54,12 +55,20 @@ void Game::Start()
 	m_pChanceCorridorTextBox->SetBounds(25, 75, 100, 25);
 	m_pChanceCorridorTextBox->AddActionListener(this);
 	m_pChanceCorridorTextBox->Show();
+
+	m_pButton = new Button();
+	m_pButton->SetBounds(30, 130, 200, 40);
+	m_pButton->SetText(L"Generate Dungeon");
+	m_pButton->AddActionListener(this);
+	m_pButton->Show();
 }
 
 void Game::End() 
 {
 	delete m_pChanceRoomTextBox;
+	delete m_pChanceCorridorTextBox;
 	delete m_pFont;
+	delete m_pButton;
 }
 
 void Game::MouseButtonAction(bool isLeft, bool isDown, int x, int y, WPARAM wParam)
@@ -97,8 +106,48 @@ void Game::Tick()
 	{
 		m_pMap->Tick();
 	}
-
-	
 }
 
-void Game::CallAction(Caller* callerPtr) {}
+
+void Game::CallAction(Caller* callerPtr) 
+{
+	if (callerPtr == m_pButton)
+	{
+		try 
+		{
+			int maxChanceRoom = std::stoi(m_pChanceRoomTextBox->GetText());
+			int maxChanceCorridor = std::stoi(m_pChanceCorridorTextBox->GetText());
+
+			m_pMap->SetMaxChanceRoom(maxChanceRoom);
+			m_pMap->SetMaxChanceCorridor(maxChanceCorridor);
+		}
+		
+		catch (const std::invalid_argument& e) 
+		{
+			// This is for NotANumberException
+			m_pChanceRoomTextBox->SetText(_T(""));
+			
+			m_pChanceCorridorTextBox->SetText(_T(""));
+
+			std::wstringstream wss;
+			wss << e.what(); 
+			std::wstring notANumberExceptionWString = wss.str();
+
+			GAME_ENGINE->MessageBox(notANumberExceptionWString); 
+		}
+		catch (const std::out_of_range& e)
+		{
+			// This is for NotANumberException
+
+			std::wstringstream wss;
+			wss << e.what();
+			std::wstring notANumberExceptionWString = wss.str();
+
+			m_pChanceRoomTextBox->SetText(_T(""));
+			m_pChanceCorridorTextBox->SetText(_T(""));
+			GAME_ENGINE->MessageBox(notANumberExceptionWString); 
+		}
+		
+		
+	}
+}

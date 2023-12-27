@@ -54,5 +54,7 @@ private:
 	TextBox* m_pChanceCorridorTextBox;
 	Font* m_pFont;
 
+	Button* m_pButton;
+
 	tstring m_Message;
 };
