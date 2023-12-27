@@ -86,5 +86,6 @@ e) If cell below is floor or corridor we will build a feature from the southern 
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/ef5da565-501b-4d65-9147-eac485b12679)
 
 9. When all the features are added we colorize the last two unused tiles as enter and exit cells to show that all rooms and corridors are walkable.
+    
 ![image](https://github.com/cinnaamonka/GenerateDungeon/assets/107621519/345a39a6-bd42-4276-8997-dcdb3d6c8aa2)
 
